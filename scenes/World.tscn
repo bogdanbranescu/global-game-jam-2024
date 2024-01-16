@@ -1,3 +1,5 @@
 [gd_scene format=3 uid="uid://cuopgdw7p7tsl"]
 
 [node name="World" type="Node2D"]
+
+[node name="StudioBankLoader" type="StudioBankLoader" parent="."]
