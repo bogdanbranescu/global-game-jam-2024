@@ -44,3 +44,5 @@ color = Color(0.141176, 0.0901961, 0.105882, 1)
 
 [node name="Player" parent="Level" instance=ExtResource("1_5sceh")]
 unique_name_in_owner = true
+position = Vector2(48, 48)
+up_direction = Vector2(2.32846e-12, 1)
