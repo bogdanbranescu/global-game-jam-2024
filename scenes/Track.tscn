@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://blk7pxwkjkpwj"]
+
+[ext_resource type="Script" path="res://scripts/Track.gd" id="1_jpro8"]
+
+[node name="Track" type="Node"]
+script = ExtResource("1_jpro8")

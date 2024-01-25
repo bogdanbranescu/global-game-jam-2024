@@ -8,23 +8,22 @@ var instance: EventInstance
 var is_paused: bool = false
 
 var tempo : int
+var beat_duration : float
 
+var beat_timestamp : int = 0
 var player_timestamp : int = 0
-var tolerance : int = 100
+var tolerance : int = 80	# should be less than (beat_duration / 2)
+							# this should be offset after a latency test
+var movement_diff
 
-var grade : String = "NONE"
+var grade : String = "NONE"	
 
 
 func _ready() -> void:
-	%Player.moved.connect(self._on_player_moved)
-	%Player.pause_track.connect(self._on_instance_pause)
-	%Player.stop_track.connect(self._on_instance_stop)
-	grade_player.connect(%Player._on_grade_received)
+	event_name = self.name
 
 	instance = FMODRuntime.create_instance_path("event:/" + event_name)
 	instance.start()
-	#instance.release()
-	#instance.start_command_capture()
 
 	instance.set_callback(beat_callback, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_BEAT)
 	instance.set_callback(marker_callback, FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_TIMELINE_MARKER)
@@ -32,44 +31,57 @@ func _ready() -> void:
 
 func _on_player_moved() -> void:
 	player_timestamp = instance.get_timeline_position()
-	grade = compute_grade()
-	send_grade()
+	compute_grade()
+	send_grade(grade)
 
 
 func beat_callback(args) -> void:
-	var beat_timestamp = args.properties.position
+	beat_timestamp = args.properties.position
 	if beat_timestamp == 0:
 		tempo = args.properties.tempo
+		beat_duration = floor(60000.0 / tempo)	# truncated, not to be accumulated
 
-	var movement_diff = beat_timestamp - player_timestamp
-	if abs(movement_diff) < tolerance:
-		grade = "GOOD"
-	else:
-		grade = "BAD"
-	call_deferred("send_grade")		# indirect due to callback
-
-	print(
-		str(args.properties.beat) + "\t" + str(args.properties.position) +
-		"\t" + str(player_timestamp) +
-		"\t" + str(movement_diff) +
-		"\t"  + grade
-	)
+	# check player action and reinitialize grade
+	call_deferred("check_nothing_pressed")
 
 
 func marker_callback(args) -> void:
 	print("Marker: " + args.properties.name + " at position: " + str(args.properties.position))
 
 
-func compute_grade() -> String:
-	var movement_diff = instance.get_timeline_position() - player_timestamp
-	if abs(movement_diff) < tolerance:
-		return "GOOD"
+func check_nothing_pressed() -> void:
+	# grade player for not acting at all after the window of tolerance
+	create_tween().tween_callback(
+		func(): 
+			if grade == "NONE": 
+				call_deferred("send_grade", "BAD")
+				print("# LATE")
+			grade = "NONE"
+	).set_delay(tolerance / 1000.0)
+	
+
+func compute_grade() -> void:
+	var movement_diff_early = beat_timestamp + beat_duration - player_timestamp
+	var movement_diff_late = player_timestamp - beat_timestamp 
+	
+	if movement_diff_early < tolerance:
+		movement_diff = -movement_diff_early
+		grade = "GOOD"
+	elif movement_diff_late < tolerance:
+		movement_diff = movement_diff_late
+		grade = "GOOD"
 	else:
-		return "BAD"
+		movement_diff = "###"
+		grade = "BAD"
+
+	if grade == "GOOD":
+		print(movement_diff, " GOOD")
+	else:
+		print("# EARLY")
 
 
-func send_grade() -> void:
-	grade_player.emit(grade)
+func send_grade(new_grade) -> void:
+	grade_player.emit(new_grade)
 
 
 func _on_instance_stop() -> void:

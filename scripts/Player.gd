@@ -51,4 +51,4 @@ func _on_grade_received(grade):
 	$GradeLabel.text = "[color=%s]%s[/color]" % [{"GOOD": "green", "BAD": "red"}[grade], grade]
 	
 	$GradeLabel.scale = Vector2.ONE
-	create_tween().tween_property($GradeLabel, "scale", Vector2(0.5, 0.5), 0.5)
+	create_tween().tween_property($GradeLabel, "scale", Vector2(0.6, 0.6), 0.25)
