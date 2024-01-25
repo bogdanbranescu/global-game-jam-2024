@@ -13,26 +13,35 @@ config_version=5
 config/name="ggj-2024"
 run/main_scene="res://scenes/World.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-WwiseRuntimeManager="*res://addons/Wwise/runtime/wwise_runtime_manager.gd"
 FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
+glb="*res://scripts_auto/global.gd"
+dbg="*res://scripts_auto/_debug.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=320
+window/size/viewport_height=180
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[editor]
+
+movie_writer/mjpeg_quality=1.0
+movie_writer/movie_file="/Users/bnx/gd/global-game-jam-2024/_movie/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/FMOD/plugin.cfg", "res://addons/Wwise/plugin.cfg", "res://addons/godot-4-importality-ecc9baa4561de8076e73f68636fee5274ac3a6b9/addons/nklbdev.importality/plugin.cfg")
+enabled=PackedStringArray("res://addons/FMOD/plugin.cfg", "res://addons/godot-4-importality-ecc9baa4561de8076e73f68636fee5274ac3a6b9/addons/nklbdev.importality/plugin.cfg")
 
 [fmod]
 
-settings/banks_path="res://banks/Desktop"
+settings/banks_path="res://audio/fmod/test/Build/Desktop"
 settings/fmod_output_type=0
 settings/fmod_debug_flags=0
 settings/fmod_debug_mode=1
@@ -51,6 +60,15 @@ settings/enable_memory_tracking=false
 settings/encryption_key=""
 settings/distance_scale_2d=1.0
 settings/init_with_3d_righthanded=true
+
+[gui]
+
+theme/default_font_antialiasing=0
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+anti_aliasing/screen_space_roughness_limiter/enabled=false
 
 [wwise]
 

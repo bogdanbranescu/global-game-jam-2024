@@ -1,5 +1,48 @@
-[gd_scene format=3 uid="uid://cuopgdw7p7tsl"]
+[gd_scene load_steps=5 format=3 uid="uid://cuopgdw7p7tsl"]
+
+[ext_resource type="PackedScene" uid="uid://7774yx0l05pn" path="res://scenes/Player.tscn" id="1_5sceh"]
+[ext_resource type="Script" path="res://scripts/Track.gd" id="1_bbf0r"]
+
+[sub_resource type="BankAsset" id="BankAsset_msrbp"]
+file_path = "res://audio/fmod/test/Build/Desktop/Master.bank"
+modified_time = 1705677075
+path = "bank:/Master"
+guid = "{1a8e99cb-9d4c-474a-b8d8-1d03b29e5446}"
+name = "Master"
+
+[sub_resource type="BankAsset" id="BankAsset_kfn7g"]
+file_path = "res://audio/fmod/test/Build/Desktop/Master.strings.bank"
+modified_time = 1705677075
+path = "bank:/Master.strings"
+guid = "{8293b91f-ec37-0b08-3e91-97fd436d52de}"
+name = "Master.strings"
 
 [node name="World" type="Node2D"]
 
-[node name="StudioBankLoader" type="StudioBankLoader" parent="."]
+[node name="Loader" type="StudioBankLoader" parent="."]
+load_on = 1
+num_banks = 2
+bank_0 = SubResource("BankAsset_msrbp")
+bank_1 = SubResource("BankAsset_kfn7g")
+unique_name_in_owner = true
+
+[node name="Track" type="Node" parent="."]
+script = ExtResource("1_bbf0r")
+event_name = "test"
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="bg" type="ColorRect" parent="Level"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.141176, 0.0901961, 0.105882, 1)
+
+[node name="Player" parent="Level" instance=ExtResource("1_5sceh")]
+unique_name_in_owner = true

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b3ccw78h1ss5n"
+path="res://.godot/imported/polychrombo - Mandrill.wav-97220c8b1001766556bda2125bc9950c.sample"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/polychrombo - Mandrill.wav"
+dest_files=["res://.godot/imported/polychrombo - Mandrill.wav-97220c8b1001766556bda2125bc9950c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

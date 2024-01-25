@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cnqe0nf3spfrx"
+path="res://.godot/imported/1_Run Run Run (away).wav-c92461e7b46dd8d3488c5fab2f109847.sample"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/1_Run Run Run (away).wav"
+dest_files=["res://.godot/imported/1_Run Run Run (away).wav-c92461e7b46dd8d3488c5fab2f109847.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
