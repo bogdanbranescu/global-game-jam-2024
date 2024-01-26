@@ -23,6 +23,7 @@ glb="*res://scripts_auto/global.gd"
 dbg="*res://scripts_auto/_debug.gd"
 RhythmManager="*res://scripts/RhythmManager.gd"
 TrackParser="*res://scripts/TrackParser.gd"
+GameloopManager="*res://scripts/GameloopManager.gd"
 
 [display]
 
@@ -39,7 +40,7 @@ movie_writer/movie_file="/Users/bnx/gd/global-game-jam-2024/_movie/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/FMOD/plugin.cfg", "res://addons/godot-4-importality-ecc9baa4561de8076e73f68636fee5274ac3a6b9/addons/nklbdev.importality/plugin.cfg")
+enabled=PackedStringArray("res://addons/FMOD/plugin.cfg")
 
 [fmod]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://s7a862jc2sfo"]
+
+[ext_resource type="TileSet" uid="uid://uc1d11bn2c3p" path="res://tiles/jester_stage_tiles.tres" id="1_d117o"]
+[ext_resource type="Script" path="res://scripts/Jester_map.gd" id="2_qbkd1"]
+
+[node name="jester_stage" type="TileMap"]
+tile_set = ExtResource("1_d117o")
+format = 2
+script = ExtResource("2_qbkd1")
