@@ -44,11 +44,11 @@ func _on_player_moved() -> void:
 
 
 func event_callback(args) -> void:
-	if args.type == FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_PLAYED:
-		print("\nStart  ", instance.get_timeline_position())
+	# if args.type == FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_PLAYED:
+	# 	print("\nStart  ", instance.get_timeline_position())
 
-	if args.type == FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_STOPPED:
-		print("Stop   ", instance.get_timeline_position())
+	# if args.type == FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_STOPPED:
+	# 	print("Stop   ", instance.get_timeline_position())
 
 
 	# beat_timestamp = args.properties.position
@@ -58,6 +58,8 @@ func event_callback(args) -> void:
 
 	# # check player action and reinitialize grade
 	# call_deferred("check_nothing_pressed")
+
+	pass
 
 
 func check_nothing_pressed() -> void:
