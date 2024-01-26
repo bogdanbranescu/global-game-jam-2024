@@ -6,8 +6,6 @@ var _sizeY = 5;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print_debug("Create map");
-	create_map(5, 5);
-	set_obj_on_cell(get_node("/root/World/Level/Player"), Vector2i(1,4));
 	pass;
 
 
