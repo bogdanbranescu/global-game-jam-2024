@@ -24,6 +24,8 @@ func _ready() -> void:
 
 	instance = FMODRuntime.create_instance_path("event:/" + event_name)
 	instance.start()
+	# DEBUG
+	instance.set_volume(0.0)
 
 	var type = FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_PLAYED | FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_STOPPED
 	# FMOD_STUDIO_EVENT_CALLBACK_CREATED					1
@@ -44,21 +46,6 @@ func _on_player_moved() -> void:
 
 
 func event_callback(args) -> void:
-	# if args.type == FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_PLAYED:
-	# 	print("\nStart  ", instance.get_timeline_position())
-
-	# if args.type == FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_STOPPED:
-	# 	print("Stop   ", instance.get_timeline_position())
-
-
-	# beat_timestamp = args.properties.position
-	# if beat_timestamp == 0:
-	# 	tempo = args.properties.tempo
-	# 	beat_duration = floor(60000.0 / tempo)	# truncated, not to be accumulated
-
-	# # check player action and reinitialize grade
-	# call_deferred("check_nothing_pressed")
-
 	pass
 
 
