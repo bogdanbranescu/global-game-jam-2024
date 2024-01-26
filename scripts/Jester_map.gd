@@ -1,11 +1,11 @@
-extends TileMap
+class_name Jester_Stage extends TileMap
 
 var _sizeX = 5;
 var _sizeY = 5;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print_debug("Create map");
+	print_debug("Created map");
 	pass;
 
 
