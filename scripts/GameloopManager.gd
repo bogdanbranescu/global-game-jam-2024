@@ -36,6 +36,8 @@ func _physics_process(_delta):
 
 
 func handle_input() -> void:
+	var player = get_node(glb.player_path) as Player;
+
 	var pressed_right = Input.is_action_just_pressed("ui_right")
 	var pressed_left = Input.is_action_just_pressed("ui_left")
 	var pressed_down = Input.is_action_just_pressed("ui_down")
@@ -43,24 +45,32 @@ func handle_input() -> void:
 
 	var pressed_move = pressed_right or pressed_left or pressed_down or pressed_bottom;
 	if(pressed_move):
+		var new_move = Vector2i.ZERO
 		if RhythmManager.can_move:
 			if pressed_right:
-				movementTracker.move(Vector2i(1, 0));
-	
+				new_move = Vector2i(1, 0)
+
 			elif pressed_left:
-				movementTracker.move(Vector2i(-1, 0));
+				new_move = Vector2i(-1, 0)
 	
 			elif pressed_down:
-				movementTracker.move(Vector2i(0, 1));
+				new_move = Vector2i(0, 1)
 	
 			elif pressed_bottom:
-				movementTracker.move(Vector2i(0, -1));
-	
+				new_move = Vector2i(0, -1)
+			
+				movementTracker.move(new_move)
+			
+
 			_handle_pressed_on_beat();
 		else:
 			_handle_pressed_off_beat();
 	
-		var player = get_node(glb.player_path) as Player;
+		if pressed_right:
+			player.flip_sprite(false)
+		elif pressed_left:
+			player.flip_sprite(true)
+
 		player.move(movementTracker.get_current_world_position());
 
 
