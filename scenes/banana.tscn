@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0g22jnhg5p5r"]
+
+[ext_resource type="PackedScene" uid="uid://e4ytexcgqnip" path="res://sprites/tiles/banana.ase" id="1_v6mf8"]
+
+[node name="Banana" type="Node2D"]
+
+[node name="banana" parent="." instance=ExtResource("1_v6mf8")]
