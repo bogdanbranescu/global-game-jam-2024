@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://7774yx0l05pn"]
+[gd_scene load_steps=4 format=3 uid="uid://7774yx0l05pn"]
 
-[ext_resource type="Texture2D" uid="uid://csihvxbu43fce" path="res://sprites/player.png" id="1_04ubd"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_ul4ht"]
-[ext_resource type="FontFile" uid="uid://bng4rkbx2prr4" path="res://ui/8bit_wonder/8-BIT WONDER.TTF" id="3_xwmmd"]
+[ext_resource type="PackedScene" uid="uid://cpwow2guc7qrc" path="res://sprites/player_character.ase" id="2_3k4vx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5b8co"]
 height = 24.0
@@ -12,26 +11,10 @@ position = Vector2(0, 1)
 script = ExtResource("1_ul4ht")
 metadata/_edit_group_ = true
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_04ubd")
+[node name="AnimatedSprite" parent="." instance=ExtResource("2_3k4vx")]
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_5b8co")
 
-[node name="GradeLabel" type="RichTextLabel" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -24.0
-offset_right = 74.0
-offset_bottom = -7.0
-grow_vertical = 0
-rotation = -0.000890272
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_fonts/normal_font = ExtResource("3_xwmmd")
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "[color=green]great"
-scroll_active = false
+[connection signal="animation_looped" from="AnimatedSprite" to="." method="_on_animated_sprite_animation_looped"]

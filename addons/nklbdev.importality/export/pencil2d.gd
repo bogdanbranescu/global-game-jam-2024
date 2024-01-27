@@ -60,7 +60,7 @@ func _export(res_source_file_path: String, options: Dictionary) -> ExportResult:
 		result.fail(zip_error, "Failed to open Pencil2D file \"%s\" as ZIP archive with error: %s (%s)" % [res_source_file_path, zip_error, error_string(zip_error)])
 		return result
 	var buffer: PackedByteArray = zip_reader.read_file("main.xml")
-	var main_xml_root: _XML.XMLNodeRoot = _XML.parse_buffer(buffer)
+	var main_xml_root: _XML.XMLNodeCustomRoot = _XML.parse_buffer(buffer)
 	zip_reader.close()
 	var animation_framerate: int = main_xml_root \
 		.get_elements("document").front() \

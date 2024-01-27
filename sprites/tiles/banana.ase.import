@@ -2,13 +2,13 @@
 
 importer="Aseprite AnimatedSprite2D"
 type="PackedScene"
-uid="uid://cpwow2guc7qrc"
-path="res://.godot/imported/player_character.ase-753a19051da6cb0aa454537ed23cfa2b.scn"
+uid="uid://e4ytexcgqnip"
+path="res://.godot/imported/banana.ase-b3742df994e1082101908e42a54d30d0.scn"
 
 [deps]
 
-source_file="res://sprites/player_character.ase"
-dest_files=["res://.godot/imported/player_character.ase-753a19051da6cb0aa454537ed23cfa2b.scn"]
+source_file="res://sprites/tiles/banana.ase"
+dest_files=["res://.godot/imported/banana.ase-b3742df994e1082101908e42a54d30d0.scn"]
 
 [params]
 

@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuopgdw7p7tsl"]
+[gd_scene load_steps=11 format=3 uid="uid://cuopgdw7p7tsl"]
 
 [ext_resource type="PackedScene" uid="uid://7774yx0l05pn" path="res://scenes/Player.tscn" id="1_5sceh"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_77dol"]
+[ext_resource type="PackedScene" uid="uid://s7a862jc2sfo" path="res://scenes/jester_stage.tscn" id="3_tswuq"]
+[ext_resource type="Texture2D" uid="uid://cdghlqbvrdrms" path="res://sprites/meter-frame.png" id="4_dqvry"]
+[ext_resource type="PackedScene" uid="uid://c1f7ihth4m6mh" path="res://sprites/king.ase" id="4_nwnqj"]
+[ext_resource type="Script" path="res://scripts/King.gd" id="5_atjqf"]
+[ext_resource type="Texture2D" uid="uid://c1ovnwb5nl8er" path="res://sprites/meter-fill.png" id="5_t3o07"]
+[ext_resource type="Script" path="res://scripts/tools/fun_bar.gd" id="6_w7l88"]
 
 [sub_resource type="BankAsset" id="BankAsset_msrbp"]
 file_path = "res://audio/fmod/test/Build/Desktop/Master.bank"
@@ -19,7 +25,7 @@ name = "Master.strings"
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_77dol")
-track_name = "test"
+track_name = "test_extra"
 
 [node name="Loader" type="StudioBankLoader" parent="."]
 load_on = 1
@@ -40,9 +46,52 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.141176, 0.0901961, 0.105882, 1)
+color = Color(0.0901961, 0.0431373, 0.101961, 1)
+
+[node name="jester_stage" parent="Level" instance=ExtResource("3_tswuq")]
+position = Vector2(95, 42)
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0)
 
 [node name="Player" parent="Level" instance=ExtResource("1_5sceh")]
 unique_name_in_owner = true
 position = Vector2(48, 48)
 up_direction = Vector2(2.32846e-12, 1)
+
+[node name="Events" type="Node2D" parent="Level"]
+unique_name_in_owner = true
+
+[node name="Decoration" type="Node2D" parent="Level"]
+
+[node name="king" parent="Level/Decoration" instance=ExtResource("4_nwnqj")]
+position = Vector2(264, 136)
+script = ExtResource("5_atjqf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -72.0
+offset_right = -8.0
+offset_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 2
+step = 0.1
+value = 30.8
+fill_mode = 3
+texture_under = ExtResource("4_dqvry")
+texture_progress = ExtResource("5_t3o07")
+script = ExtResource("6_w7l88")

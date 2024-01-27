@@ -1,51 +1,66 @@
-extends Node2D
+extends Node
+
+signal spawn_event
+signal can_move_changed
+
+var can_move : bool:
+	set(value):
+		can_move = value
+		can_move_changed.emit()
+
+var track_name : String:
+	set(value):
+		track_name = value
+		generate_movement_windows()
+
+var timeline_events : Array
+var eid : int = 0
+
+var timeline_windows : Array[Array]
+var wid : int = 0
+
+var timestamp : int
+var tolerance : int = 100
 
 
-@onready var note = load("res://scenes/Note.tscn")
-
-@onready var timer = $TickTimer
-@onready var sfx_player = $TickSfxPlayer
-
-var prev_beat = Time.get_ticks_msec()
-var tick_duration = 60.0 / glb.bpm
-
-var momentum = 0
+func _ready() -> void:
+	spawn_event.connect(EventSpawner._on_spawn_event)
 
 
-func _ready():
-	timer.set_wait_time(tick_duration)
-	timer.set_one_shot(false)
-	timer.timeout.connect(tick)
-	timer.start()
+func _physics_process(_delta) -> void:
+	check_movement()
+	check_spawn()
 
 
-func tick():
-	sfx_player.play()
-	prev_beat = Time.get_ticks_msec()
-
-	randomize()
-	#generate_note(randi() % 3)
-
-
-func generate_note(line):
-	var new_note = note.instantiate()
-	new_note.line = line
-
-
-func _process(delta):
-	momentum = clamp(momentum - glb.depletion_rate * delta, 0, 100)
+func check_movement():
+	if wid == -1:
+		return
+	if timestamp > timeline_windows[wid][0] and timestamp < timeline_windows[wid][1]:
+		can_move = true
+		return
+	elif timestamp > timeline_windows[wid][1]:
+		wid += 1
+		if wid > timeline_windows.size() - 1:
+			wid = -1
+	
+	can_move = false
 
 
-func _on_Player_moved(move_timestamp):
-	var beat_difference = move_timestamp - prev_beat
+func check_spawn():
+	if timestamp >= timeline_events[eid]:
+		spawn_event.emit(randi() % 3, Vector2(randi() % 5, randi() % 5), timeline_events[eid])
+		eid += 1
+		if eid > timeline_events.size() - 1:
+			eid = -1
 
-	var earliest_upcoming_allowed = prev_beat + (1 - glb.beat_tolerance) * tick_duration * 1000
-	var latest_allowed = prev_beat + glb.beat_tolerance * tick_duration * 1000
 
-	print(latest_allowed, "\t", move_timestamp, "\t", earliest_upcoming_allowed)
+func generate_movement_windows() -> void:
+	timeline_events = TrackParser.get_subevents(track_name)
+	timeline_windows = []
+	
+	for t in timeline_events:
+		timeline_windows.append([max(0, t - tolerance), t + tolerance])
+	
 
-	if move_timestamp < latest_allowed or move_timestamp > earliest_upcoming_allowed:
-		print(beat_difference)
-		momentum += 10
-	else:
-		momentum -= 2
+func _on_new_timestamp(tstamp : int) -> void:
+	timestamp = tstamp

@@ -2,13 +2,13 @@
 
 importer="Aseprite AnimatedSprite2D"
 type="PackedScene"
-uid="uid://cpwow2guc7qrc"
-path="res://.godot/imported/player_character.ase-753a19051da6cb0aa454537ed23cfa2b.scn"
+uid="uid://c26mn4af4k65f"
+path="res://.godot/imported/bird.ase-a77db0ae0e92919eba13a6995eee914c.scn"
 
 [deps]
 
-source_file="res://sprites/player_character.ase"
-dest_files=["res://.godot/imported/player_character.ase-753a19051da6cb0aa454537ed23cfa2b.scn"]
+source_file="res://sprites/bird.ase"
+dest_files=["res://.godot/imported/bird.ase-a77db0ae0e92919eba13a6995eee914c.scn"]
 
 [params]
 

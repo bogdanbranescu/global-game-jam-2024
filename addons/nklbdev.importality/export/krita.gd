@@ -72,10 +72,10 @@ func _export(res_source_file_path: String, options: Dictionary) -> ExportResult:
 
 	var maindoc_filename: String = "maindoc.xml"
 	var maindoc_buffer: PackedByteArray = zip_reader.read_file(maindoc_filename)
-	var maindoc_xml_root: _XML.XMLNodeRoot = _XML.parse_buffer(maindoc_buffer)
-	var maindoc_doc_xml_element: _XML.XMLNodeElement = maindoc_xml_root.get_elements("DOC").front()
+	var maindoc_xml_root: _XML.XMLNodeCustomRoot = _XML.parse_buffer(maindoc_buffer)
+	var maindoc_doc_xml_element: _XML.XMLNodeCustomElement = maindoc_xml_root.get_elements("DOC").front()
 
-	var image_xml_element: _XML.XMLNodeElement = maindoc_doc_xml_element.get_elements("IMAGE").front()
+	var image_xml_element: _XML.XMLNodeCustomElement = maindoc_doc_xml_element.get_elements("IMAGE").front()
 	var image_name: String = image_xml_element.get_string("name")
 	var image_size: Vector2i = image_xml_element.get_vector2i("width", "height")
 	var image_name_validation_result: _Result = __validate_image_name(image_name)
@@ -94,18 +94,18 @@ func _export(res_source_file_path: String, options: Dictionary) -> ExportResult:
 		result.fail(ERR_INVALID_DATA, "Source file has no keyframes")
 		return result
 
-	var animation_xml_element: _XML.XMLNodeElement = image_xml_element.get_elements("animation").front()
+	var animation_xml_element: _XML.XMLNodeCustomElement = image_xml_element.get_elements("animation").front()
 	var animation_framerate: int = max(1, animation_xml_element.get_elements("framerate").front().get_int("value"))
-	var animation_range_xml_element: _XML.XMLNodeElement = animation_xml_element.get_elements("range").front()
+	var animation_range_xml_element: _XML.XMLNodeCustomElement = animation_xml_element.get_elements("range").front()
 
 	var animation_index_filename: String = "%s/animation/index.xml" % image_name
 	var animation_index_buffer: PackedByteArray = zip_reader.read_file(animation_index_filename)
-	var animation_index_xml_root: _XML.XMLNodeRoot = _XML.parse_buffer(animation_index_buffer)
-	var animation_index_animation_metadata_xml_element: _XML.XMLNodeElement = animation_index_xml_root.get_elements("animation-metadata").front()
-	var animation_index_animation_metadata_range_xml_element: _XML.XMLNodeElement = animation_index_animation_metadata_xml_element.get_elements("range").front()
-	var export_settings_xml_element: _XML.XMLNodeElement = animation_index_animation_metadata_xml_element.get_elements("export-settings").front()
-	var sequence_file_path_xml_element: _XML.XMLNodeElement = export_settings_xml_element.get_elements("sequenceFilePath").front()
-	var sequence_base_name_xml_element: _XML.XMLNodeElement = export_settings_xml_element.get_elements("sequenceBaseName").front()
+	var animation_index_xml_root: _XML.XMLNodeCustomRoot = _XML.parse_buffer(animation_index_buffer)
+	var animation_index_animation_metadata_xml_element: _XML.XMLNodeCustomElement = animation_index_xml_root.get_elements("animation-metadata").front()
+	var animation_index_animation_metadata_range_xml_element: _XML.XMLNodeCustomElement = animation_index_animation_metadata_xml_element.get_elements("range").front()
+	var export_settings_xml_element: _XML.XMLNodeCustomElement = animation_index_animation_metadata_xml_element.get_elements("export-settings").front()
+	var sequence_file_path_xml_element: _XML.XMLNodeCustomElement = export_settings_xml_element.get_elements("sequenceFilePath").front()
+	var sequence_base_name_xml_element: _XML.XMLNodeCustomElement = export_settings_xml_element.get_elements("sequenceBaseName").front()
 
 	var animations_parameters_parsing_results: Array[AnimationParamsParsingResult]
 	var total_animations_frames_count: int
@@ -118,14 +118,14 @@ func _export(res_source_file_path: String, options: Dictionary) -> ExportResult:
 
 	var storyboard_index_file_name: String = "%s/storyboard/index.xml" % image_name
 	if storyboard_index_file_name in files_names_in_zip:
-		var storyboard_index_xml_root: _XML.XMLNodeRoot = _XML.parse_buffer(zip_reader.read_file("%s/storyboard/index.xml" % image_name))
-		var storyboard_info_xml_element: _XML.XMLNodeElement = storyboard_index_xml_root.get_elements("storyboard-info").front()
-		var storyboard_item_list_xml_element: _XML.XMLNodeElement = storyboard_info_xml_element.get_elements("StoryboardItemList").front()
-		var storyboard_item_xml_elements: Array[_XML.XMLNodeElement] = storyboard_item_list_xml_element.get_elements("storyboarditem")
+		var storyboard_index_xml_root: _XML.XMLNodeCustomRoot = _XML.parse_buffer(zip_reader.read_file("%s/storyboard/index.xml" % image_name))
+		var storyboard_info_xml_element: _XML.XMLNodeCustomElement = storyboard_index_xml_root.get_elements("storyboard-info").front()
+		var storyboard_item_list_xml_element: _XML.XMLNodeCustomElement = storyboard_info_xml_element.get_elements("StoryboardItemList").front()
+		var storyboard_item_xml_elements: Array[_XML.XMLNodeCustomElement] = storyboard_item_list_xml_element.get_elements("storyboarditem")
 		var unique_animations_names: PackedStringArray
 
 		for animation_index in storyboard_item_xml_elements.size():
-			var story_xml_element: _XML.XMLNodeElement = storyboard_item_xml_elements[animation_index]
+			var story_xml_element: _XML.XMLNodeCustomElement = storyboard_item_xml_elements[animation_index]
 			var animation_first_frame: int = story_xml_element.get_int("frame")
 			var animation_params_parsing_result: AnimationParamsParsingResult = _parse_animation_params(
 				story_xml_element.get_string("item-name").strip_edges(),

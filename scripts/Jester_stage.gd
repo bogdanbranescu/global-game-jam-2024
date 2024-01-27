@@ -1,0 +1,57 @@
+class_name Jester_Stage extends TileMap
+
+var _sizeX = 5;
+var _sizeY = 5;
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print_debug("Created map");
+
+	create_map(5, 5);
+
+	pass;
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	
+	pass;
+
+
+func create_map(sizeX: int, sizeY: int):
+	_sizeX = sizeX;
+	_sizeY = sizeY;
+	var invert = false;
+	for x in sizeX:
+		for y in sizeY:
+			if invert:
+				set_cell(0, Vector2(x, y), 1, Vector2i(0,0));
+			else:
+				set_cell(0, Vector2i(x, y), 1, Vector2i(0,0));
+			invert = !invert;
+	
+	pass;
+
+
+func set_obj_on_cell(obj: Node2D, cellVector: Vector2i):
+	if(obj == null):
+		print_debug("ERROR: Setting object on cell is null");
+
+	var local_pos = map_to_local(cellVector);
+	obj.set_position(local_pos);
+	pass;
+
+
+func get_position_on_cell(cellVector: Vector2i):
+	var localPos = map_to_local(cellVector);
+	var offSetpost = position + localPos;
+	return offSetpost;
+
+func get_grid_size():
+	return Vector2i(_sizeX, _sizeY);
+
+func clamp_cellVector(cellVector: Vector2i):
+	var size = get_grid_size();
+	var x = clamp(cellVector.x, 0, size.x - 1);
+	var y = clamp(cellVector.y, 0, size.y - 1);
+	return Vector2i(x, y);

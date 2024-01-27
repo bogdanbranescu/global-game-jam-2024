@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csihvxbu43fce"
-path="res://.godot/imported/player.png-f534b8a02ffb80eefc72936296201445.ctex"
+uid="uid://c7m6osqjanj15"
+path="res://.godot/imported/king.ase.png-710c79949a97bd6ce45a5f9598d36798.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player.png"
-dest_files=["res://.godot/imported/player.png-f534b8a02ffb80eefc72936296201445.ctex"]
+source_file="res://sprites/king.ase.png"
+dest_files=["res://.godot/imported/king.ase.png-710c79949a97bd6ce45a5f9598d36798.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

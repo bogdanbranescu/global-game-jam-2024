@@ -9,6 +9,7 @@ var Track = load("res://scenes/Track.tscn")
 
 func _ready() -> void:
 	start_track()
+ 
 
 func start_track() -> void:
 	current_track = Track.instantiate()
@@ -16,7 +17,7 @@ func start_track() -> void:
 	add_child(current_track)
 
 	# Connect player actions to the track
-	%Player.moved.connect(current_track._on_player_moved)
-	%Player.pause_track.connect(current_track._on_instance_pause)
-	%Player.stop_track.connect(current_track._on_instance_stop)
-	current_track.grade_player.connect(%Player._on_grade_received)
+	%Player.moved.connect(current_track._on_player_moved)					# PLAYER - GAME
+	GameloopManager.pause_track.connect(current_track._on_instance_pause)			# TRACK - GAME
+	GameloopManager.stop_track.connect(current_track._on_instance_stop)				# TRACK - GAME
+	# current_track.grade_player.connect(%Player._on_grade_received)			# N/A
