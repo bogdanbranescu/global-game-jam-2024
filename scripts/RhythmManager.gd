@@ -1,7 +1,8 @@
 extends Node
 
-
+signal spawn_event
 signal can_move_changed
+
 var can_move : bool:
 	set(value):
 		can_move = value
@@ -13,19 +14,25 @@ var track_name : String:
 		generate_movement_windows()
 
 var timeline_events : Array
+var eid : int = 0
+
 var timeline_windows : Array[Array]
+var wid : int = 0
 
 var timestamp : int
-var wid : int = 0
 var tolerance : int = 100
 
 
 func _ready() -> void:
-	# TODO connect nodes
-	pass
+	spawn_event.connect(EventSpawner._on_spawn_event)
 
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
+	check_movement()
+	check_spawn()
+
+
+func check_movement():
 	if wid == -1:
 		return
 
@@ -40,9 +47,12 @@ func _physics_process(delta) -> void:
 	can_move = false
 
 
-func _on_new_timestamp(tstamp : int) -> void:
-	timestamp = tstamp
-	print("%d\t%d" % [Time.get_ticks_msec(), timestamp])
+func check_spawn():
+	if timestamp >= timeline_events[eid]:
+		spawn_event.emit(randi() % 3, Vector2(randi() % 5, randi() % 5), timeline_events[eid])
+		eid += 1
+		if eid > timeline_events.size() - 1:
+			eid = -1
 
 
 func generate_movement_windows() -> void:
@@ -51,3 +61,7 @@ func generate_movement_windows() -> void:
 	
 	for t in timeline_events:
 		timeline_windows.append([max(0, t - tolerance), t + tolerance])
+	
+
+func _on_new_timestamp(tstamp : int) -> void:
+	timestamp = tstamp

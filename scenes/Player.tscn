@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://7774yx0l05pn"]
 
-[ext_resource type="Texture2D" uid="uid://csihvxbu43fce" path="res://sprites/player.png" id="1_04ubd"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_ul4ht"]
+[ext_resource type="Texture2D" uid="uid://7lw10pt8sw6h" path="res://sprites/player.ase" id="2_5iik8"]
 [ext_resource type="FontFile" uid="uid://bng4rkbx2prr4" path="res://ui/8bit_wonder/8-BIT WONDER.TTF" id="3_xwmmd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5b8co"]
@@ -13,7 +13,7 @@ script = ExtResource("1_ul4ht")
 metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_04ubd")
+texture = ExtResource("2_5iik8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_5b8co")

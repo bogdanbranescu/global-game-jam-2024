@@ -24,6 +24,7 @@ dbg="*res://scripts_auto/_debug.gd"
 RhythmManager="*res://scripts/RhythmManager.gd"
 TrackParser="*res://scripts/TrackParser.gd"
 GameloopManager="*res://scripts/GameloopManager.gd"
+EventSpawner="*res://scripts/EventSpawner.gd"
 
 [display]
 
@@ -67,10 +68,6 @@ settings/init_with_3d_righthanded=true
 [gui]
 
 theme/default_font_antialiasing=0
-
-[physics]
-
-common/physics_ticks_per_second=120
 
 [rendering]
 
