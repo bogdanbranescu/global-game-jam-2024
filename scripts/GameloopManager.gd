@@ -3,6 +3,8 @@ extends Node
 signal stop_track
 signal pause_track
 
+signal wrong_beat
+
 var movementTracker = MovementTracker.new();
 
 var fun_bar_level = 50;
@@ -77,6 +79,8 @@ func _handle_pressed_on_beat():
 	var player = get_node(glb.player_path) as Player;
 	player.handle_pressed_on_beat();
 
+	get_node(glb.king_path).invoke_reaction(true);
+
 	pass;
 	
 	
@@ -85,6 +89,8 @@ func _handle_pressed_off_beat():
 
 	var player = get_node(glb.player_path) as Player;
 	player.handle_stutter();
+
+	get_node(glb.king_path).invoke_reaction(false);
 	
 	pass;
 
