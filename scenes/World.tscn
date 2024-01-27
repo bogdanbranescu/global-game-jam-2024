@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuopgdw7p7tsl"]
+[gd_scene load_steps=7 format=3 uid="uid://cuopgdw7p7tsl"]
 
 [ext_resource type="PackedScene" uid="uid://7774yx0l05pn" path="res://scenes/Player.tscn" id="1_5sceh"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_77dol"]
 [ext_resource type="PackedScene" uid="uid://s7a862jc2sfo" path="res://scenes/jester_stage.tscn" id="3_tswuq"]
+[ext_resource type="PackedScene" uid="uid://c1f7ihth4m6mh" path="res://sprites/king.ase" id="4_nwnqj"]
 
 [sub_resource type="BankAsset" id="BankAsset_msrbp"]
 file_path = "res://audio/fmod/test/Build/Desktop/Master.bank"
@@ -41,11 +42,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.141176, 0.0901961, 0.105882, 1)
+color = Color(0.0901961, 0.0431373, 0.101961, 1)
 
 [node name="jester_stage" parent="Level" instance=ExtResource("3_tswuq")]
 position = Vector2(111, 51)
-layer_0/tile_data = PackedInt32Array(0, 2, 0, 65536, 1, 0, 131072, 2, 0, 196608, 1, 0, 262144, 2, 0, 1, 1, 0, 65537, 2, 0, 131073, 1, 0, 196609, 2, 0, 262145, 1, 0, 2, 2, 0, 65538, 1, 0, 131074, 2, 0, 196610, 1, 0, 262146, 2, 0, 3, 1, 0, 65539, 2, 0, 131075, 1, 0, 196611, 2, 0, 262147, 1, 0, 4, 2, 0, 65540, 1, 0, 131076, 2, 0, 196612, 1, 0, 262148, 2, 0)
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0)
 
 [node name="Player" parent="Level" instance=ExtResource("1_5sceh")]
 unique_name_in_owner = true
@@ -54,6 +55,11 @@ up_direction = Vector2(2.32846e-12, 1)
 
 [node name="Events" type="Node2D" parent="Level"]
 unique_name_in_owner = true
+
+[node name="Decoration" type="Node2D" parent="Level"]
+
+[node name="king" parent="Level/Decoration" instance=ExtResource("4_nwnqj")]
+position = Vector2(288, 136)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

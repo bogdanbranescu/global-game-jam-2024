@@ -35,7 +35,6 @@ func _physics_process(_delta) -> void:
 func check_movement():
 	if wid == -1:
 		return
-
 	if timestamp > timeline_windows[wid][0] and timestamp < timeline_windows[wid][1]:
 		can_move = true
 		return
