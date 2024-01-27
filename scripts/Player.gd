@@ -23,15 +23,13 @@ func move(new_pos: Vector2) -> void:
 	# move_and_slide()
 
 	position = new_pos;
-	flip_sprite();
 
 	previous_pos = new_pos;
 	pass;
 
 
-func flip_sprite():
-	print("FLIPPPING!!");
-	# Implement flip logic
+func flip_sprite(should_flip : bool) -> void:
+	$AnimatedSprite.flip_h = should_flip;
 
 	pass;
 
@@ -44,9 +42,15 @@ func _on_grade_received(grade):
 	create_tween().tween_property($GradeLabel, "scale", Vector2(0.6, 0.6), 0.25)
 
 
-func handle_pressed_on_beat():	
-	pass;
+func handle_pressed_on_beat():
+	$AnimatedSprite.animation = "Walk"
+	$AnimatedSprite.offset.x = -24
+	create_tween().tween_property($AnimatedSprite, "offset", Vector2.ZERO, 0.15)
+
 
 func handle_stutter():
+	$AnimatedSprite.animation = "Stutter"
 
-	pass;
+
+func _on_animated_sprite_animation_looped():
+	$AnimatedSprite.animation = "Idle"

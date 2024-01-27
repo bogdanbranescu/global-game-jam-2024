@@ -1,4 +1,3 @@
-@tool
 class_name Jester_Stage extends TileMap
 
 var _sizeX = 5;

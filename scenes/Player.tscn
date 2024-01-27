@@ -12,8 +12,9 @@ script = ExtResource("1_ul4ht")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite" parent="." instance=ExtResource("2_3k4vx")]
-animation = &"Walk"
-autoplay = "Walk"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_5b8co")
+
+[connection signal="animation_looped" from="AnimatedSprite" to="." method="_on_animated_sprite_animation_looped"]

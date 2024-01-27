@@ -26,7 +26,7 @@ func _ready() -> void:
 	instance = FMODRuntime.create_instance_path("event:/" + event_name)
 	instance.start()
 	# DEBUG
-	#instance.set_volume(0.0)
+	instance.set_volume(0.0)
 
 	var type = FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_PLAYED
 	# FMOD_STUDIO_EVENT_CALLBACK_CREATED					1
