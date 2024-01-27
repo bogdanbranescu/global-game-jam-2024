@@ -6,19 +6,28 @@ signal pause_track
 var movementTracker = MovementTracker.new();
 
 var fun_bar_level = 50;
+var game_is_active = false;
 
 
 func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
+	Start_Game();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var decrease_ratio = 0.5;
+	if not game_is_active:
+		return;
+
+	if fun_bar_level < 0:
+		_handle_lose_game();
+
+	var decrease_ratio = 5;
 	fun_bar_level -= decrease_ratio * _delta;
-	pass;
+
 
 
 func Start_Game():
+	game_is_active = true;
 	pass;
 
 
@@ -34,7 +43,6 @@ func handle_input() -> void:
 
 	var pressed_move = pressed_right or pressed_left or pressed_down or pressed_bottom;
 	if(pressed_move):
-		print("move");
 		if RhythmManager.can_move:
 			if pressed_right:
 				movementTracker.move(Vector2i(1, 0));
@@ -78,6 +86,13 @@ func _handle_pressed_off_beat():
 	
 	pass;
 
+
+func _handle_lose_game():
+	print_debug("handling lose game");
+
+	game_is_active = false;
+
+	pass;
 
 
 class MovementTracker:
