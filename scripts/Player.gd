@@ -8,7 +8,6 @@ signal moved
 # var direction := Vector2.ZERO
 @onready var speed := glb.speed
 
-
 func _ready():
 	pass;
 
@@ -36,3 +35,10 @@ func _on_grade_received(grade):
 	$GradeLabel.scale = Vector2.ONE
 	create_tween().tween_property($GradeLabel, "scale", Vector2(0.6, 0.6), 0.25)
 
+
+func handle_pressed_on_beat():	
+	pass;
+
+func handle_stutter():
+
+	pass;
