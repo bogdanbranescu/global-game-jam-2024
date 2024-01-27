@@ -23,17 +23,18 @@ func _physics_process(_delta):
 
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_right"):
-		movementTracker.move(Vector2i(1, 0));
+	if RhythmManager.can_move:
+		if Input.is_action_just_pressed("ui_right"):
+			movementTracker.move(Vector2i(1, 0));
 
-	elif Input.is_action_just_pressed("ui_left"):
-		movementTracker.move(Vector2i(-1, 0));
+		elif Input.is_action_just_pressed("ui_left"):
+			movementTracker.move(Vector2i(-1, 0));
 
-	elif Input.is_action_just_pressed("ui_down"):
-		movementTracker.move(Vector2i(0, 1));
-		
-	elif Input.is_action_just_pressed("ui_up"):
-		movementTracker.move(Vector2i(0, -1));
+		elif Input.is_action_just_pressed("ui_down"):
+			movementTracker.move(Vector2i(0, 1));
+
+		elif Input.is_action_just_pressed("ui_up"):
+			movementTracker.move(Vector2i(0, -1));
 
 	if Input.is_action_just_pressed("ui_accept"):
 		pause_track.emit()
