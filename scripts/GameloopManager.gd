@@ -5,12 +5,16 @@ signal pause_track
 
 var movementTracker = MovementTracker.new();
 
+var fun_bar_level = 50;
+
 
 func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	var decrease_ratio = 0.5;
+	fun_bar_level -= decrease_ratio * _delta;
 	pass;
 
 
