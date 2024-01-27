@@ -3,7 +3,7 @@ extends Node
 
 @onready var stage_event = load("res://scenes/StageEvent.tscn")
 
-enum {
+enum Event_Type{
 	EVENT_TYPE_BANANA,
 	EVENT_TYPE_BIRD,
 	EVENT_TYPE_BALLS,
