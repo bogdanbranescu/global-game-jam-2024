@@ -2,6 +2,7 @@ extends Node
 
 
 signal grade_player(grade)
+signal generated_timestamp(ts)
 
 @export var event_name: String
 var instance: EventInstance
@@ -12,20 +13,20 @@ var beat_duration : float
 
 var beat_timestamp : int = 0
 var player_timestamp : int = 0
-var tolerance : int = 80	# should be less than (beat_duration / 2)
-							# this should be offset after a latency test
 var movement_diff
 
-var grade : String = "NONE"	
+var current_timestamp : int = 0
 
 
 func _ready() -> void:
 	event_name = self.name
+	generated_timestamp.connect(RhythmManager._on_new_timestamp)
+	RhythmManager.track_name = event_name
 
 	instance = FMODRuntime.create_instance_path("event:/" + event_name)
 	instance.start()
 	# DEBUG
-	instance.set_volume(0.0)
+	#instance.set_volume(0.0)
 
 	var type = FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_PLAYED | FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_STOPPED
 	# FMOD_STUDIO_EVENT_CALLBACK_CREATED					1
@@ -41,47 +42,22 @@ func _ready() -> void:
 
 func _on_player_moved() -> void:
 	player_timestamp = instance.get_timeline_position()
-	compute_grade()
-	send_grade(grade)
 
 
 func event_callback(args) -> void:
 	pass
-
-
-func check_nothing_pressed() -> void:
-	# grade player for not acting at all after the window of tolerance
-	create_tween().tween_callback(
-		func(): 
-			if grade == "NONE": 
-				call_deferred("send_grade", "BAD")
-				print("# LATE")
-			grade = "NONE"
-	).set_delay(tolerance / 1000.0)
+	#print(instance.get_timeline_position())
 	
 
 func compute_grade() -> void:
+	pass
 	var movement_diff_early = beat_timestamp + beat_duration - player_timestamp
 	var movement_diff_late = player_timestamp - beat_timestamp 
-	
-	if movement_diff_early < tolerance:
-		movement_diff = -movement_diff_early
-		grade = "GOOD"
-	elif movement_diff_late < tolerance:
-		movement_diff = movement_diff_late
-		grade = "GOOD"
-	else:
-		movement_diff = "###"
-		grade = "BAD"
-
-	if grade == "GOOD":
-		print(movement_diff, " GOOD")
-	else:
-		print("# EARLY")
 
 
-func send_grade(new_grade) -> void:
-	grade_player.emit(new_grade)
+func _physics_process(_delta) -> void:
+	current_timestamp = instance.get_timeline_position()
+	generated_timestamp.emit(current_timestamp)
 
 
 func _on_instance_stop() -> void:

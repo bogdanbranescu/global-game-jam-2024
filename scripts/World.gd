@@ -15,7 +15,6 @@ func start_track() -> void:
 	current_track = Track.instantiate()
 	current_track.name = track_name
 	add_child(current_track)
-	TrackParser.get_subevents(track_name)
 
 	# Connect player actions to the track
 	%Player.moved.connect(current_track._on_player_moved)					# PLAYER - GAME
