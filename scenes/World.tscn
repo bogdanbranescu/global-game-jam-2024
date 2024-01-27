@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://7774yx0l05pn" path="res://scenes/Player.tscn" id="1_5sceh"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_77dol"]
-[ext_resource type="PackedScene" path="res://scenes/jester_stage.tscn" id="3_tswuq"]
+[ext_resource type="PackedScene" uid="uid://s7a862jc2sfo" path="res://scenes/jester_stage.tscn" id="3_tswuq"]
 
 [sub_resource type="BankAsset" id="BankAsset_msrbp"]
 file_path = "res://audio/fmod/test/Build/Desktop/Master.bank"

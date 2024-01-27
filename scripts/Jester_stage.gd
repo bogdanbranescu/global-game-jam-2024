@@ -1,5 +1,4 @@
-@tool
-extends TileMap
+class_name Jester_Stage extends TileMap
 
 var _sizeX = 5;
 var _sizeY = 5;
@@ -8,8 +7,8 @@ var _sizeY = 5;
 func _ready():
 	print_debug("Created map");
 
-	if Engine.is_editor_hint():
-		create_map(5,5);
+	# if Engine.is_editor_hint():
+	# 
 
 	pass;
 
@@ -45,3 +44,15 @@ func set_obj_on_cell(obj: Node2D, cellVector: Vector2i):
 
 func get_position_on_cell(cellVector: Vector2i):
 	return map_to_local(cellVector);
+
+
+func testing():
+	print_debug("Testing");
+	pass;
+
+func _on_script_changed():
+	print("----SCRIPT CHANGED----");
+	create_map(2,2);
+	pass # Replace with function body.
+
+	
