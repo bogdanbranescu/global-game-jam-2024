@@ -1,3 +1,4 @@
+@tool
 extends TileMap
 
 var _sizeX = 5;
@@ -5,7 +6,11 @@ var _sizeY = 5;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print_debug("Create map");
+	print_debug("Created map");
+
+	if Engine.is_editor_hint():
+		create_map(5,5);
+
 	pass;
 
 
@@ -23,7 +28,7 @@ func create_map(sizeX: int, sizeY: int):
 			if invert:
 				set_cell(0, Vector2(x, y), 1, Vector2i(0,0));
 			else:
-				set_cell(0, Vector2i(x, y), 0, Vector2i(0,0));
+				set_cell(0, Vector2i(x, y), 2, Vector2i(0,0));
 			invert = !invert;
 	
 	pass;

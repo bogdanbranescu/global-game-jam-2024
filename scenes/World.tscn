@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuopgdw7p7tsl"]
+[gd_scene load_steps=6 format=3 uid="uid://cuopgdw7p7tsl"]
 
 [ext_resource type="PackedScene" uid="uid://7774yx0l05pn" path="res://scenes/Player.tscn" id="1_5sceh"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_77dol"]
+[ext_resource type="PackedScene" uid="uid://s7a862jc2sfo" path="res://scenes/jester_stage.tscn" id="3_tswuq"]
 
 [sub_resource type="BankAsset" id="BankAsset_msrbp"]
 file_path = "res://audio/fmod/test/Build/Desktop/Master.bank"
@@ -56,3 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="jester_stage" parent="Level" instance=ExtResource("3_tswuq")]
+position = Vector2(111, 51)
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 1, 0, 131072, 0, 0, 196608, 1, 0, 262144, 0, 0, 1, 1, 0, 65537, 0, 0, 131073, 1, 0, 196609, 0, 0, 262145, 1, 0, 2, 0, 0, 65538, 1, 0, 131074, 0, 0, 196610, 1, 0, 262146, 0, 0, 3, 1, 0, 65539, 0, 0, 131075, 1, 0, 196611, 0, 0, 262147, 1, 0, 4, 0, 0, 65540, 1, 0, 131076, 0, 0, 196612, 1, 0, 262148, 0, 0)
