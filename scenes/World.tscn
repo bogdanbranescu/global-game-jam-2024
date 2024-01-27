@@ -19,7 +19,7 @@ name = "Master.strings"
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_77dol")
-track_name = "test"
+track_name = "test_extra"
 
 [node name="Loader" type="StudioBankLoader" parent="."]
 load_on = 1
@@ -46,3 +46,13 @@ color = Color(0.141176, 0.0901961, 0.105882, 1)
 unique_name_in_owner = true
 position = Vector2(48, 48)
 up_direction = Vector2(2.32846e-12, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
