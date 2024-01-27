@@ -2,6 +2,7 @@ extends Node
 
 
 const EVENT_DIR_PATH = "res://audio/fmod/test/Metadata/Event/"
+var subevent_type = "SingleSound"
 
 
 func get_subevents(event_name) -> Array:
@@ -22,7 +23,7 @@ func parse_timeline(event_name) -> Array:
             for idx in range(parser.get_attribute_count()):
                 attributes_dict[parser.get_attribute_name(idx)] = parser.get_attribute_value(idx)
 
-                if attributes_dict.has("class") and attributes_dict["class"] == "SingleSound":
+                if attributes_dict.has("class") and attributes_dict["class"] == subevent_type:
                     flag_next_float = true
 
         elif parser.get_node_type() == XMLParser.NODE_TEXT and parser.get_node_data().is_valid_float() and flag_next_float:

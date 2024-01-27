@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuopgdw7p7tsl"]
+[gd_scene load_steps=7 format=3 uid="uid://cuopgdw7p7tsl"]
 
 [ext_resource type="PackedScene" uid="uid://7774yx0l05pn" path="res://scenes/Player.tscn" id="1_5sceh"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_77dol"]
 [ext_resource type="PackedScene" path="res://scenes/jester_stage.tscn" id="3_tswuq"]
+[ext_resource type="Texture2D" uid="uid://brlf8aq7b0ram" path="res://sprites/tiles/stage-tile.ase" id="4_ovvwd"]
 
 [sub_resource type="BankAsset" id="BankAsset_msrbp"]
 file_path = "res://audio/fmod/test/Build/Desktop/Master.bank"
@@ -61,3 +62,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="test-sprite" type="Sprite2D" parent="."]
+position = Vector2(64, 112)
+texture = ExtResource("4_ovvwd")

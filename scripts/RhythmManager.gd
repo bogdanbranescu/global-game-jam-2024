@@ -12,10 +12,12 @@ var track_name : String:
 		track_name = value
 		generate_movement_windows()
 
-var timestamp : int
-var tolerance : int = 100
 var timeline_events : Array
 var timeline_windows : Array[Array]
+
+var timestamp : int
+var wid : int = 0
+var tolerance : int = 100
 
 
 func _ready() -> void:
@@ -23,12 +25,24 @@ func _ready() -> void:
 	pass
 
 
-func _physics_process(delta):
-	pass
+func _physics_process(delta) -> void:
+	if wid == -1:
+		return
+
+	if timestamp > timeline_windows[wid][0] and timestamp < timeline_windows[wid][1]:
+		can_move = true
+		return
+	elif timestamp > timeline_windows[wid][1]:
+		wid += 1
+		if wid > timeline_windows.size() - 1:
+			wid = -1
+	
+	can_move = false
 
 
-func _on_new_timestamp(timestamp : int) -> void:
-	self.timestamp = timestamp
+func _on_new_timestamp(tstamp : int) -> void:
+	timestamp = tstamp
+	print("%d\t%d" % [Time.get_ticks_msec(), timestamp])
 
 
 func generate_movement_windows() -> void:
@@ -37,7 +51,3 @@ func generate_movement_windows() -> void:
 	
 	for t in timeline_events:
 		timeline_windows.append([max(0, t - tolerance), t + tolerance])
-
-	print(timeline_events)
-	print(timeline_windows)
-		
