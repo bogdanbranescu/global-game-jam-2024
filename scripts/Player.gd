@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 
 signal moved
@@ -8,18 +8,25 @@ signal pause_track
 var direction := Vector2.ZERO
 @onready var speed := glb.speed
 
+var movementTracker = MovementTracker.new();
+
+func _ready():
+	movementTracker.load(get_node("/root/World/Level/jester_stage") as Jester_Stage);
 
 func handle_input() -> void:
 	direction = Vector2.ZERO
 
 	if Input.is_action_just_pressed("ui_right"):
-		direction = Vector2i(1, 0)
+		movementTracker.move(Vector2i(1, 0));
+
 	elif Input.is_action_just_pressed("ui_left"):
-		direction = Vector2i(-1, 0)
+		movementTracker.move(Vector2i(-1, 0));
+
 	elif Input.is_action_just_pressed("ui_down"):
-		direction = Vector2i(0, 1)
+		movementTracker.move(Vector2i(0, 1));
+		
 	elif Input.is_action_just_pressed("ui_up"):
-		direction = Vector2i(0, -1)
+		movementTracker.move(Vector2i(0, -1));
 
 	if direction != Vector2.ZERO:
 		moved.emit()
@@ -44,7 +51,10 @@ func move() -> void:
 	# velocity = direction * speed
 	# set_velocity(velocity * 3)
 	# move_and_slide()
-	position += direction * speed
+
+	position = movementTracker.get_current_world_position();
+	pass;
+
 
 
 func _on_grade_received(grade):
@@ -52,3 +62,24 @@ func _on_grade_received(grade):
 	
 	$GradeLabel.scale = Vector2.ONE
 	create_tween().tween_property($GradeLabel, "scale", Vector2(0.6, 0.6), 0.25)
+
+
+class MovementTracker:
+	var minCellPos = Vector2i.ZERO;
+	var maxCellPos = Vector2i.ZERO;
+
+	var currentCellPosition = Vector2i.ZERO;
+	var _jester_stage: Jester_Stage;
+
+	func load(jester_stage: Jester_Stage):
+		maxCellPos = jester_stage.get_grid_size();
+		minCellPos = Vector2i.ZERO;
+		_jester_stage = jester_stage;
+
+	func move(direction: Vector2i):
+		currentCellPosition += direction;
+		currentCellPosition = _jester_stage.clamp_cellVector(currentCellPosition);
+		
+
+	func get_current_world_position() -> Vector2:
+		return _jester_stage.get_position_on_cell(currentCellPosition);

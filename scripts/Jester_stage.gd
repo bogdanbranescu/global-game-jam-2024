@@ -7,13 +7,14 @@ var _sizeY = 5;
 func _ready():
 	print_debug("Created map");
 
-	create_map(_sizeX, _sizeY);
+	create_map(5, 5);
 
 	pass;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
+	
 	pass;
 
 
@@ -42,16 +43,15 @@ func set_obj_on_cell(obj: Node2D, cellVector: Vector2i):
 
 
 func get_position_on_cell(cellVector: Vector2i):
-	return map_to_local(cellVector);
+	var localPos = map_to_local(cellVector);
+	var offSetpost = position + localPos;
+	return offSetpost;
 
+func get_grid_size():
+	return Vector2i(_sizeX, _sizeY);
 
-func testing():
-	print_debug("Testing");
-	pass;
-
-func _on_script_changed():
-	print("----SCRIPT CHANGED----");
-	create_map(2,2);
-	pass # Replace with function body.
-
-	
+func clamp_cellVector(cellVector: Vector2i):
+	var size = get_grid_size();
+	var x = clamp(cellVector.x, 0, size.x - 1);
+	var y = clamp(cellVector.y, 0, size.y - 1);
+	return Vector2i(x, y);
