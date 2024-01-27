@@ -7,14 +7,13 @@ var _sizeY = 5;
 func _ready():
 	print_debug("Created map");
 
-	# if Engine.is_editor_hint():
-	# 
+	create_map(_sizeX, _sizeY);
 
 	pass;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass;
 
 
@@ -27,7 +26,7 @@ func create_map(sizeX: int, sizeY: int):
 			if invert:
 				set_cell(0, Vector2(x, y), 1, Vector2i(0,0));
 			else:
-				set_cell(0, Vector2i(x, y), 2, Vector2i(0,0));
+				set_cell(0, Vector2i(x, y), 1, Vector2i(0,0));
 			invert = !invert;
 	
 	pass;
