@@ -59,8 +59,10 @@ func handle_input() -> void:
 			_handle_pressed_on_beat();
 		else:
 			_handle_pressed_off_beat();
+	
+		var player = get_node(glb.player_path) as Player;
+		player.move(movementTracker.get_current_world_position());
 
-		
 
 	if Input.is_action_just_pressed("ui_accept"):
 		pause_track.emit()

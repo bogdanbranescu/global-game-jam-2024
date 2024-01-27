@@ -11,13 +11,10 @@ signal moved
 func _ready():
 	pass;
 
-
-func _physics_process(_delta):
-	# handle_input()
-	move()
+var previous_pos = Vector2.ZERO;
 
 
-func move() -> void:
+func move(new_pos: Vector2) -> void:
 	# TODO set_animation("Walk")
 	# animation_tree.set("parameters/Idle/blend_position", direction)
 	# animation_tree.set("parameters/Walk/blend_position", direction)
@@ -25,8 +22,19 @@ func move() -> void:
 	# set_velocity(velocity * 3)
 	# move_and_slide()
 
-	position = GameloopManager.movementTracker.get_current_world_position();
+	position = new_pos;
+	flip_sprite();
+
+	previous_pos = new_pos;
 	pass;
+
+
+func flip_sprite():
+	print("FLIPPPING!!");
+	# Implement flip logic
+
+	pass;
+
 
 
 func _on_grade_received(grade):
