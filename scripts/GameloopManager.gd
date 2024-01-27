@@ -23,24 +23,57 @@ func _physics_process(_delta):
 
 
 func handle_input() -> void:
-	if RhythmManager.can_move:
-		if Input.is_action_just_pressed("ui_right"):
-			movementTracker.move(Vector2i(1, 0));
+	var pressed_right = Input.is_action_just_pressed("ui_right")
+	var pressed_left = Input.is_action_just_pressed("ui_left")
+	var pressed_down = Input.is_action_just_pressed("ui_down")
+	var pressed_bottom = Input.is_action_just_pressed("ui_up")
 
-		elif Input.is_action_just_pressed("ui_left"):
-			movementTracker.move(Vector2i(-1, 0));
+	var pressed_move = pressed_right or pressed_left or pressed_down or pressed_bottom;
+	if(pressed_move):
+		print("move");
+		if RhythmManager.can_move:
+			if pressed_right:
+				movementTracker.move(Vector2i(1, 0));
+	
+			elif pressed_left:
+				movementTracker.move(Vector2i(-1, 0));
+	
+			elif pressed_down:
+				movementTracker.move(Vector2i(0, 1));
+	
+			elif pressed_bottom:
+				movementTracker.move(Vector2i(0, -1));
+	
+			_handle_pressed_on_beat();
+		else:
+			_handle_pressed_off_beat();
 
-		elif Input.is_action_just_pressed("ui_down"):
-			movementTracker.move(Vector2i(0, 1));
-
-		elif Input.is_action_just_pressed("ui_up"):
-			movementTracker.move(Vector2i(0, -1));
+		
 
 	if Input.is_action_just_pressed("ui_accept"):
 		pause_track.emit()
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		stop_track.emit()
+
+
+func _handle_pressed_on_beat():
+	print_debug("handling pressed on beat");
+
+	var player = get_node(glb.player_path) as Player;
+	player.handle_pressed_on_beat();
+
+	pass;
+	
+	
+func _handle_pressed_off_beat():
+	print_debug("handling pressed off beat");
+
+	var player = get_node(glb.player_path) as Player;
+	player.handle_stutter();
+	
+	pass;
+
 
 
 class MovementTracker:
