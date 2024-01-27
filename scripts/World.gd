@@ -18,6 +18,6 @@ func start_track() -> void:
 
 	# Connect player actions to the track
 	%Player.moved.connect(current_track._on_player_moved)					# PLAYER - GAME
-	%Player.pause_track.connect(current_track._on_instance_pause)			# TRACK - GAME
-	%Player.stop_track.connect(current_track._on_instance_stop)				# TRACK - GAME
+	GameloopManager.pause_track.connect(current_track._on_instance_pause)			# TRACK - GAME
+	GameloopManager.stop_track.connect(current_track._on_instance_stop)				# TRACK - GAME
 	# current_track.grade_player.connect(%Player._on_grade_received)			# N/A
