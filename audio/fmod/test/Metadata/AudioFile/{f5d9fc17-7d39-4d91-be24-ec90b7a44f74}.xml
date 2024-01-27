@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{f5d9fc17-7d39-4d91-be24-ec90b7a44f74}">
 		<property name="assetPath">
-			<value>sound_ex_machina_Button_Tick.mp3</value>
+			<value>Music/sound_ex_machina_Button_Tick.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

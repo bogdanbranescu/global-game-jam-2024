@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{ab8de724-8aed-419e-bf3b-83215e520738}">
 		<property name="assetPath">
-			<value>polychrombo - Mandrill.wav</value>
+			<value>Music/polychrombo - Mandrill.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

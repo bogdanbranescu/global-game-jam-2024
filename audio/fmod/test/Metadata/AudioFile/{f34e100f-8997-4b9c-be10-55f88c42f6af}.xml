@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f34e100f-8997-4b9c-be10-55f88c42f6af}">
+		<property name="assetPath">
+			<value>Music/Horn.aiff</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>19.058333333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b460e547-ec10-4ca7-a7b6-e105422ed344}</destination>
+		</relationship>
+	</object>
+</objects>

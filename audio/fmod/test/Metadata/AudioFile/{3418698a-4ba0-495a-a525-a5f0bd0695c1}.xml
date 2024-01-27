@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{3418698a-4ba0-495a-a525-a5f0bd0695c1}">
+		<property name="assetPath">
+			<value>Music/Flexatone 2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8117913832199546</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b460e547-ec10-4ca7-a7b6-e105422ed344}</destination>
+		</relationship>
+	</object>
+</objects>

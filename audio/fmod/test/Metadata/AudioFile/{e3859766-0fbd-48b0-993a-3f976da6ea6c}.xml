@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e3859766-0fbd-48b0-993a-3f976da6ea6c}">
+		<property name="assetPath">
+			<value>Music/Vibraslap2.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>19.243791666666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b460e547-ec10-4ca7-a7b6-e105422ed344}</destination>
+		</relationship>
+	</object>
+</objects>

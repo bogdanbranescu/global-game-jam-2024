@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{84265102-5e8e-4ef3-998e-698604432c8f}">
 		<property name="assetPath">
-			<value>polychrombo - Pygmy Marmoset.wav</value>
+			<value>Music/polychrombo - Pygmy Marmoset.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
