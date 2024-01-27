@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvbq445xkuf6f"
-path="res://.godot/imported/XMLReader.png-96af86fd60fa5a75fe6ab342bcec6e7e.ctex"
+uid="uid://1x3dcnu3aeee"
+path="res://.godot/imported/player_character.ase.png-14fc6864d23363b0b06ceb6c666b557f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/XMLReader/XMLReader.png"
-dest_files=["res://.godot/imported/XMLReader.png-96af86fd60fa5a75fe6ab342bcec6e7e.ctex"]
+source_file="res://sprites/player_character.ase.png"
+dest_files=["res://.godot/imported/player_character.ase.png-14fc6864d23363b0b06ceb6c666b557f.ctex"]
 
 [params]
 

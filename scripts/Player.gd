@@ -30,7 +30,6 @@ func move() -> void:
 	pass;
 
 
-
 func _on_grade_received(grade):
 	$GradeLabel.text = "[color=%s]%s[/color]" % [{"GOOD": "green", "BAD": "red"}[grade], grade]
 	

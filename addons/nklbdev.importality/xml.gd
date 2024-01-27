@@ -1,6 +1,6 @@
 @tool
 
-class XMLNode:
+class XMLNodeCustom:
 	extends RefCounted
 	var text: String
 	func _init(text: String) -> void:
@@ -8,15 +8,15 @@ class XMLNode:
 	func _get_solid_text() -> String:
 		assert(false, "This method is abstract and must be overriden in derived class")
 		return ""
-	func get_elements(text: String) -> Array[XMLNodeElement]:
+	func get_elements(text: String) -> Array[XMLNodeCustomElement]:
 		assert(false, "This method is abstract and must be overriden in derived class")
 		return []
 	func _dump(target: PackedStringArray, indent: String, level: int) -> void:
 		target.append(indent.repeat(level) + _get_solid_text())
 
-class XMLNodeParent:
-	extends XMLNode
-	var children: Array[XMLNode]
+class XMLNodeCustomParent:
+	extends XMLNodeCustom
+	var children: Array[XMLNodeCustom]
 	func _init(text: String) -> void:
 		super(text)
 	func _get_opening_tag() -> String: return ""
@@ -35,13 +35,13 @@ class XMLNodeParent:
 			target.append(tag_indent + _get_opening_tag())
 			_dump_children(target, indent, level + 1)
 			target.append(tag_indent + _get_closing_tag())
-	func get_elements(text: String) -> Array[XMLNodeElement]:
-		var result: Array[XMLNodeElement]
-		result.append_array(children.filter(func(n): return n is XMLNodeElement and n.text == text))
+	func get_elements(text: String) -> Array[XMLNodeCustomElement]:
+		var result: Array[XMLNodeCustomElement]
+		result.append_array(children.filter(func(n): return n is XMLNodeCustomElement and n.text == text))
 		return result
 
-class XMLNodeRoot:
-	extends XMLNodeParent
+class XMLNodeCustomRoot:
+	extends XMLNodeCustomParent
 	func _init() -> void:
 		super("")
 	func dump_to_string(indent: String = " ", new_line: String = "\n") -> String:
@@ -56,8 +56,8 @@ class XMLNodeRoot:
 		file.store_string(dump_to_string(indent, new_line))
 		file.close()
 
-class XMLNodeElement:
-	extends XMLNodeParent
+class XMLNodeCustomElement:
+	extends XMLNodeCustomParent
 	var attributes: Dictionary
 	var closed: bool
 	func _init(text: String, closed: bool = false) -> void:
@@ -100,8 +100,8 @@ class XMLNodeElement:
 		push_warning("Failed to parse bool value from string: \"%s\", returning false..." % [raw_value])
 		return false
 
-class XMLNodeText:
-	extends XMLNode
+class XMLNodeCustomText:
+	extends XMLNodeCustom
 	func _init(text: String) -> void:
 		super(text)
 	func _get_solid_text() -> String: return text.strip_edges()
@@ -110,44 +110,44 @@ class XMLNodeText:
 		if not text.is_empty():
 			target.append(indent.repeat(level) + text)
 
-class XMLNodeCData:
-	extends XMLNode
+class XMLNodeCustomCData:
+	extends XMLNodeCustom
 	func _init(text: String) -> void:
 		super(text)
 	func _get_solid_text() -> String: return "<![CDATA[%s]]>" % [text]
 
-class XMLNodeComment:
-	extends XMLNode
+class XMLNodeCustomComment:
+	extends XMLNodeCustom
 	func _init(text: String) -> void:
 		super(text)
 	func _get_solid_text() -> String: return "<!%s>" % [text]
 
-class XMLNodeUnknown:
-	extends XMLNode
+class XMLNodeCustomUnknown:
+	extends XMLNodeCustom
 	func _init(text: String) -> void:
 		super(text)
 	func _get_solid_text() -> String: return "<%s>" % [text]
 
-static func parse_file(path: String) -> XMLNodeRoot:
+static func parse_file(path: String) -> XMLNodeCustomRoot:
 	var parser = XMLParser.new()
 	parser.open(path)
 	return __parse_xml(parser)
 
-static func parse_buffer(buffer: PackedByteArray) -> XMLNodeRoot:
+static func parse_buffer(buffer: PackedByteArray) -> XMLNodeCustomRoot:
 	var parser = XMLParser.new()
 	parser.open_buffer(buffer)
 	return __parse_xml(parser)
 
-static func parse_string(xml_string: String) -> XMLNodeRoot:
+static func parse_string(xml_string: String) -> XMLNodeCustomRoot:
 	return parse_buffer(xml_string.to_utf8_buffer())
 
-static func __parse_xml(parser: XMLParser) -> XMLNodeRoot:
-	var root = XMLNodeRoot.new()
-	var stack: Array[XMLNode] = [root]
+static func __parse_xml(parser: XMLParser) -> XMLNodeCustomRoot:
+	var root = XMLNodeCustomRoot.new()
+	var stack: Array[XMLNodeCustom] = [root]
 	while parser.read() != ERR_FILE_EOF:
 		match parser.get_node_type():
 			XMLParser.NODE_ELEMENT:
-				var node: XMLNode = XMLNodeElement.new(parser.get_node_name())
+				var node: XMLNodeCustom = XMLNodeCustomElement.new(parser.get_node_name())
 				for attr_idx in parser.get_attribute_count():
 					node.attributes[parser.get_attribute_name(attr_idx)] = \
 						parser.get_attribute_value(attr_idx)
@@ -162,13 +162,13 @@ static func __parse_xml(parser: XMLParser) -> XMLNodeRoot:
 			XMLParser.NODE_TEXT:
 				var text: String = parser.get_node_data().strip_edges()
 				if not text.is_empty():
-					stack.back().children.push_back(XMLNodeText.new(text))
+					stack.back().children.push_back(XMLNodeCustomText.new(text))
 			XMLParser.NODE_CDATA:
-				stack.back().children.push_back(XMLNodeCData.new(parser.get_node_data()))
+				stack.back().children.push_back(XMLNodeCustomCData.new(parser.get_node_data()))
 			XMLParser.NODE_NONE:
 				push_error("Incorrect XML node found")
 			XMLParser.NODE_UNKNOWN:
-				stack.back().children.push_back(XMLNodeUnknown.new(parser.get_node_name()))
+				stack.back().children.push_back(XMLNodeCustomUnknown.new(parser.get_node_name()))
 			XMLParser.NODE_COMMENT:
-				stack.back().children.push_back(XMLNodeComment.new(parser.get_node_name()))
+				stack.back().children.push_back(XMLNodeCustomComment.new(parser.get_node_name()))
 	return root
