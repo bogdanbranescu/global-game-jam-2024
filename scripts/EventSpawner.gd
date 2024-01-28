@@ -2,7 +2,9 @@ extends Node
 
 
 @onready var stage_event = load("res://scenes/StageEvent.tscn")
+
 @onready var stage_info = GameloopManager.movementTracker
+@onready var stage = get_node(glb.jester_stage_path) as Jester_Stage
 
 enum Event_Type{
 	EVENT_TYPE_BANANA,
@@ -34,7 +36,7 @@ func _on_spawn_event(event_type, grid_location, timestamp):
 
 
 func pick_location() -> Vector2i:
-	var player_position = stage_info.get_current_cell_position()
+	var player_position = Vector2.ONE * 3 #stage_info.get_current_cell_position()
 	var current_distance = distances[difficulty].pick_random()
 	var candidates = get_cells_at_distance(player_position, current_distance)
 	
@@ -53,7 +55,8 @@ func pick_event_type() -> int:
 
 
 func get_cells_at_distance(from: Vector2i, distance: int) -> Array:
-	var cells = [from]		# start with northmost cell
+	var northmost_cell = from + Vector2i(0, -distance)
+	var cells = [northmost_cell]
 	var directions = [
 		Vector2i(1, 1),			# SE edge
 		Vector2i(-1, 1),		# SW edge
@@ -64,11 +67,18 @@ func get_cells_at_distance(from: Vector2i, distance: int) -> Array:
 	for d in directions:
 		for i in range(distance):
 			var new_cell = cells[i-1] + d
-			if new_cell:		# TODO check if cell is valid
-				cells.append(new_cell)
+			cells.append(new_cell)
+
+	# cells = cells.filter(func (x): return x == x.clamp(Vector2i.ZERO, stage.get_grid_size()))
 
 
-	print(distance, "\t", cells)
+	for c in cells:
+		print("HERE")
+		var s = Sprite2D.new()
+		s.texture = load("res://sprites/tiles/banana.ase.png")
+		stage.add_child(s)
+		stage.set_obj_on_cell(s, c)
+	
 	return cells
 
 

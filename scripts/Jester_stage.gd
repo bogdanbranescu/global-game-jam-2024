@@ -30,6 +30,12 @@ func create_map(sizeX: int, sizeY: int):
 				set_cell(0, Vector2i(x, y), 1, Vector2i(0,0));
 			invert = !invert;
 	
+	# EDGES
+	for x in sizeX:
+		set_cell(0, Vector2(x, sizeX), 0, Vector2i(0,0));
+	for y in sizeY:
+		set_cell(0, Vector2(-1, y), 2, Vector2i(0,0));
+
 	pass;
 
 

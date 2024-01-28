@@ -1,19 +1,26 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://uc1d11bn2c3p"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://uc1d11bn2c3p"]
 
+[ext_resource type="Texture2D" uid="uid://dgi2ga875hxj1" path="res://sprites/stage-tile-edge-down.ase" id="1_8fyl3"]
 [ext_resource type="Texture2D" uid="uid://brlf8aq7b0ram" path="res://sprites/tiles/stage-tile.ase" id="1_xbkke"]
-[ext_resource type="Texture2D" uid="uid://cl66c2kaonhq0" path="res://sprites/jester_stage_sprites/tile_2.png" id="2_p357l"]
+[ext_resource type="Texture2D" uid="uid://lwhc4g3cqfts" path="res://sprites/stage-tile-edge-left.ase" id="3_x5em6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2n3sp"]
+texture = ExtResource("1_8fyl3")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wtfes"]
 texture = ExtResource("1_xbkke")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bsjnj"]
-texture = ExtResource("2_p357l")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3gl37"]
+texture = ExtResource("3_x5em6")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
 
 [resource]
 tile_size = Vector2i(24, 24)
 sources/1 = SubResource("TileSetAtlasSource_wtfes")
-sources/2 = SubResource("TileSetAtlasSource_bsjnj")
+sources/0 = SubResource("TileSetAtlasSource_2n3sp")
+sources/2 = SubResource("TileSetAtlasSource_3gl37")
