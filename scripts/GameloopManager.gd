@@ -18,19 +18,21 @@ func _ready():
 	start_a_countdown();
 	pass;
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if not game_is_active:
-		return;
+
+func _handle_decrease_fun_bar():
+	print("PEW PEW");
+	fun_bar_level -= 1.5;
+	fun_bar_level = clamp(fun_bar_level, 0, 100);
 
 	if fun_bar_level < 0:
 		_handle_lose_game();
 
+	pass;
 
-	var decrease_ratio = 5;
-	fun_bar_level -= decrease_ratio * _delta;
-
-	fun_bar_level = clamp(fun_bar_level, 0, 100);
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if not game_is_active:
+		return;
 
 
 
@@ -69,6 +71,7 @@ func Start_Game():
 	var player = get_node(glb.player_path) as Player;
 	player.move(movementTracker.get_current_world_position());
 
+	RhythmManager.tick_event.connect(_handle_decrease_fun_bar);
 	# event_collecter_tracker = EventCollectTracker.new();
 	# event_collecter_tracker.create_new_sequence();
 
@@ -140,7 +143,12 @@ func _handle_pressed_on_beat():
 	
 	if(movementTracker.check_if_standing_on_event()):
 		_handle_player_collect_event(EventSpawner.Event_Type.EVENT_TYPE_BANANA);
-		fun_bar_level += 10.5;
+		fun_bar_level += 5.5;
+
+		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;
+		jester_stage.remove_tile_event_from_cell(movementTracker.get_current_cell_position());
+
+		EventSpawner.spawn_event();
 
 	pass;
 	
@@ -151,7 +159,7 @@ func _handle_pressed_off_beat():
 
 	get_node(glb.king_path).invoke_reaction(false);
 
-	fun_bar_level -= 1.25;
+	fun_bar_level -= 3.0;
 
 
 	pass;
@@ -160,10 +168,13 @@ func _handle_pressed_off_beat():
 func _handle_lose_game():
 	print_debug("handling lose game");
 
-	game_is_active = false;
+	GameloopManager.pause_track.emit();
 
-	pass;
-
+	var source_wav_lose_audio =preload("res://audio/Cubase/GGJ 2024/TrombFart.wav");
+	var lose_audio = AudioStreamPlayer.new();
+	add_child(lose_audio);
+	lose_audio.stream = source_wav_lose_audio;
+	lose_audio.play();
 
 class MovementTracker:
 	var minCellPos = Vector2i.ZERO;
