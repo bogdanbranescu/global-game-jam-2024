@@ -2,6 +2,7 @@ extends Node
 
 signal spawn_event
 signal can_move_changed
+signal tick_event
 
 var can_move : bool:
 	set(value):
@@ -50,6 +51,7 @@ func check_movement():
 func check_spawn():
 	if timestamp >= timeline_events[eid]:
 		spawn_event.emit(randi() % 3, Vector2(randi() % 5, randi() % 5), timeline_events[eid])
+		tick_event.emit()
 		eid += 1
 		if eid > timeline_events.size() - 1:
 			eid = -1

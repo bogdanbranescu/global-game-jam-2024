@@ -16,6 +16,7 @@ var game_is_active = false;
 func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
 	Start_Game();
+	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -25,15 +26,23 @@ func _process(_delta):
 	if fun_bar_level < 0:
 		_handle_lose_game();
 
+	
+	pass;
 
-	var decrease_ratio = 5;
-	fun_bar_level -= decrease_ratio * _delta;
 
+func _handle_decrease_fun_bar():
+	print("PEW PEW");
+	fun_bar_level -= 2.5;
 	fun_bar_level = clamp(fun_bar_level, 0, 100);
 
+	if fun_bar_level < 0:
+		_handle_lose_game();
+
+	pass;
 
 
 func Start_Game():
+	RhythmManager.tick_event.connect(_handle_decrease_fun_bar);
 	game_is_active = true;
 
 	var player = get_node(glb.player_path) as Player;
@@ -61,8 +70,6 @@ func handle_input() -> void:
 	var pressed_down = Input.is_action_just_pressed("ui_down")
 	var pressed_bottom = Input.is_action_just_pressed("ui_up")
 
-	if RhythmManager.can_move:
-		print("MOVE")
 
 	var pressed_move = pressed_right or pressed_left or pressed_down or pressed_bottom;
 	if(pressed_move):
@@ -114,6 +121,10 @@ func _handle_pressed_on_beat():
 		_handle_player_collect_event(EventSpawner.Event_Type.EVENT_TYPE_BANANA);
 		fun_bar_level += 10.5;
 
+		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;
+		jester_stage.remove_tile_event_from_cell(movementTracker.get_current_cell_position());
+		
+
 	pass;
 	
 	
@@ -124,12 +135,22 @@ func _handle_pressed_off_beat():
 	get_node(glb.king_path).invoke_reaction(false);
 
 	fun_bar_level -= 2.5;
-	
+
+
 	pass;
 
 
 func _handle_lose_game():
 	print_debug("handling lose game");
+
+	GameloopManager.pause_track.emit();
+
+	var source_wav_lose_audio =preload("res://audio/Cubase/GGJ 2024/TrombFart.wav");
+	var lose_audio = AudioStreamPlayer.new();
+	add_child(lose_audio);
+	lose_audio.stream = source_wav_lose_audio;
+	lose_audio.play();
+
 
 	game_is_active = false;
 

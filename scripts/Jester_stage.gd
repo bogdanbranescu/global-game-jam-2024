@@ -60,3 +60,6 @@ func clamp_cellVector(cellVector: Vector2i):
 	var x = clamp(cellVector.x, 0, size.x - 1);
 	var y = clamp(cellVector.y, 0, size.y - 1);
 	return Vector2i(x, y);
+
+func remove_tile_event_from_cell(cellVector:Vector2i):
+	set_cell(1, cellVector, -1, Vector2i(0,0));
