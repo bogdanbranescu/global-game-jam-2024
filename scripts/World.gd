@@ -9,7 +9,19 @@ var Track = load("res://scenes/Track.tscn")
 
 func _ready() -> void:
 	start_track()
+	pass
  
+
+func _process(_delta) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		start_track()
+
+
+	if Input.is_action_just_pressed("ui_accept"):
+		glb.difficulty = min(glb.difficulty + 1, 4)
+		current_track.update_difficulty()
+		print("Difficulty: ", glb.difficulty)
+
 
 func start_track() -> void:
 	current_track = Track.instantiate()

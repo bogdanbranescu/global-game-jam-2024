@@ -61,6 +61,9 @@ func handle_input() -> void:
 	var pressed_down = Input.is_action_just_pressed("ui_down")
 	var pressed_bottom = Input.is_action_just_pressed("ui_up")
 
+	if RhythmManager.can_move:
+		print("MOVE")
+
 	var pressed_move = pressed_right or pressed_left or pressed_down or pressed_bottom;
 	if(pressed_move):
 		var new_move = Vector2i.ZERO
@@ -92,11 +95,11 @@ func handle_input() -> void:
 		player.set_offset(new_move);
 
 
-	if Input.is_action_just_pressed("ui_accept"):
-		pause_track.emit()
+	# if Input.is_action_just_pressed("ui_accept"):
+	# 	pause_track.emit()
 
-	if Input.is_action_just_pressed("ui_cancel"):
-		stop_track.emit()
+	# if Input.is_action_just_pressed("ui_cancel"):
+	# 	stop_track.emit()
 
 
 func _handle_pressed_on_beat():
@@ -115,8 +118,6 @@ func _handle_pressed_on_beat():
 	
 	
 func _handle_pressed_off_beat():
-	print_debug("handling pressed off beat");
-
 	var player = get_node(glb.player_path) as Player;
 	player.handle_stutter();
 

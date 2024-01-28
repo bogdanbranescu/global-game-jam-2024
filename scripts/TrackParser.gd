@@ -4,6 +4,7 @@ extends Node
 const EVENT_DIR_PATH = "res://audio/fmod/test/Metadata/Event/"
 var subevent_type = "SingleSound"
 
+var offset := 1650
 
 func get_subevents(event_name) -> Array:
 	return parse_timeline(event_name)
@@ -27,7 +28,7 @@ func parse_timeline(event_name) -> Array:
 					flag_next_float = true
 
 		elif parser.get_node_type() == XMLParser.NODE_TEXT and parser.get_node_data().is_valid_float() and flag_next_float:
-			timeline.append(floor(parser.get_node_data().to_float() * 1000))
+			timeline.append(floor(parser.get_node_data().to_float() * 1000 + offset))
 			flag_next_float = false
 
 	return timeline

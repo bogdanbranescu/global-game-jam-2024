@@ -5,8 +5,6 @@ var _sizeY = 5;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print_debug("Created map");
-
 	create_map(5, 5);
 
 	pass;

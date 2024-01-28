@@ -44,7 +44,7 @@ func _on_player_moved() -> void:
 
 
 func event_callback(_args) -> void:
-	print(instance.get_timeline_position())
+	print("###" + str(instance.get_timeline_position()))
 	
 
 func _physics_process(_delta) -> void:
@@ -63,3 +63,7 @@ func _on_instance_stop() -> void:
 func _on_instance_pause() -> void:
 	is_paused = !is_paused
 	instance.set_paused(is_paused)
+
+
+func update_difficulty():
+	FMODStudioModule.get_studio_system().set_parameter_by_name("Progress1", glb.difficulty, false)

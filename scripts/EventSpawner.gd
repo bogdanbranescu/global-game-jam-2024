@@ -74,7 +74,6 @@ func get_cells_at_distance(from: Vector2i, distance: int) -> Array:
 	print(cells)
 
 	for cell_coordinates in cells:
-		print("set")
 		stage.set_entity_on_cell(3, cell_coordinates, 1)
 	
 	return cells

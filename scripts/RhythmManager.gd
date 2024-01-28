@@ -20,7 +20,7 @@ var timeline_windows : Array[Array]
 var wid : int = 0
 
 var timestamp : int
-var tolerance : int = 100
+var tolerance : int = 450
 
 
 func _ready() -> void:
@@ -63,6 +63,7 @@ func generate_movement_windows() -> void:
 		timeline_windows.append([max(0, t - tolerance), t + tolerance])
 
 	print(timeline_events.size(), timeline_events)
+	print(timeline_windows.size(), timeline_windows)
 	
 
 func _on_new_timestamp(tstamp : int) -> void:
