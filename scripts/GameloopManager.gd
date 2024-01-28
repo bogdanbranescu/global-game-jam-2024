@@ -21,6 +21,8 @@ func _ready():
 	start_a_countdown();
 	pass;
 
+var allow_move = false;
+
 func logSomething():
 	pass;
 	# print("timestamp ", RhythmManager.timestamp);
@@ -79,6 +81,7 @@ func start_a_countdown():
 
 func Start_Game():
 	game_is_active = true;
+	allow_move = true;
 
 	var player = get_node(glb.player_path) as Player;
 	player.move(movementTracker.get_current_world_position());
@@ -95,7 +98,8 @@ func _handle_player_collect_event(collected_type: EventSpawner.Event_Type):
 
 
 func _physics_process(_delta):
-	handle_input();
+	if allow_move:
+		handle_input();
 
 
 func handle_input() -> void:
