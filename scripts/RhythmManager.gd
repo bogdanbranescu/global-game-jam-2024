@@ -72,7 +72,6 @@ func _on_new_timestamp(tstamp : int) -> void:
 func _on_jump():
 	print("AAAAAAAAAAAA");
 	for i in range(timeline_events.size()):
-		print('PUUULAAAA ', i);
 		if timestamp > timeline_events[i]:
 			print("timestamp", timestamp);
 			print("timeline_events", timeline_events[i]);
