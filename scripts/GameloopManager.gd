@@ -33,6 +33,9 @@ func _process(_delta):
 func Start_Game():
 	game_is_active = true;
 
+	var player = get_node(glb.player_path) as Player;
+	player.move(movementTracker.get_current_world_position());
+
 	event_collecter_tracker = EventCollectTracker.new();
 	event_collecter_tracker.create_new_sequence();
 
@@ -100,6 +103,10 @@ func _handle_pressed_on_beat():
 	player.handle_pressed_on_beat();
 
 	get_node(glb.king_path).invoke_reaction(true);
+	
+	if(movementTracker.check_if_standing_on_event()):
+		_handle_player_collect_event(EventSpawner.Event_Type.EVENT_TYPE_BANANA);
+		fun_bar_level += 10.5;
 
 	pass;
 	
@@ -111,6 +118,8 @@ func _handle_pressed_off_beat():
 	player.handle_stutter();
 
 	get_node(glb.king_path).invoke_reaction(false);
+
+	fun_bar_level -= 2.5;
 	
 	pass;
 
@@ -146,6 +155,16 @@ class MovementTracker:
 
 	func get_current_world_position() -> Vector2:
 		return _jester_stage.get_position_on_cell(currentCellPosition);
+
+	func check_if_standing_on_event():
+		print("get_current_cell_position", get_current_cell_position());
+		var cell_id = _jester_stage.get_cell_source_id(1, get_current_cell_position());
+
+		var banana_tile_id = 3;
+		if cell_id != -1 and cell_id == banana_tile_id:
+			return true;
+		
+		return false;
 
 
 class EventCollectTracker:
