@@ -136,6 +136,15 @@ func _handle_pressed_off_beat():
 func _handle_lose_game():
 	print_debug("handling lose game");
 
+	GameloopManager.pause_track.emit();
+
+	var source_wav_lose_audio =preload("res://audio/Cubase/GGJ 2024/TrombFart.wav");
+	var lose_audio = AudioStreamPlayer.new();
+	add_child(lose_audio);
+	lose_audio.stream = source_wav_lose_audio;
+	lose_audio.play();
+
+
 	game_is_active = false;
 
 	pass;
