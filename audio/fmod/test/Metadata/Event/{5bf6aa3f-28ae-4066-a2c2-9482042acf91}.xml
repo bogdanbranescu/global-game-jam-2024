@@ -2820,7 +2820,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{c929ade0-6ee2-45df-81f1-c27c12032966}">
 		<property name="volume">
-			<value>-3</value>
+			<value>-13.5</value>
 		</property>
 		<property name="name">
 			<value>Triggers</value>

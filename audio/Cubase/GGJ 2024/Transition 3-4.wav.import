@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bu47hruegjaoa"
+path="res://.godot/imported/Transition 3-4.wav-a0f8988c92d5909bd6e120150699333a.sample"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Transition 3-4.wav"
+dest_files=["res://.godot/imported/Transition 3-4.wav-a0f8988c92d5909bd6e120150699333a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

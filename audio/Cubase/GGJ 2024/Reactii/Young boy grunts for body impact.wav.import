@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmhsqdtwucwwj"
+path="res://.godot/imported/Young boy grunts for body impact.wav-0c60fc2d65eb9cf2d92d6a0feae981bb.sample"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Reactii/Young boy grunts for body impact.wav"
+dest_files=["res://.godot/imported/Young boy grunts for body impact.wav-0c60fc2d65eb9cf2d92d6a0feae981bb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

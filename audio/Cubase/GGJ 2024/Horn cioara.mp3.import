@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bjekk1qf12v15"
+path="res://.godot/imported/Horn cioara.mp3-4a7ddfd3ed4bc65e9316c0b44139caf3.mp3str"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Horn cioara.mp3"
+dest_files=["res://.godot/imported/Horn cioara.mp3-4a7ddfd3ed4bc65e9316c0b44139caf3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

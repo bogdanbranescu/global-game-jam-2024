@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbua25el5lxmf"
+path="res://.godot/imported/Fart.mp3-255e3d43818caff027d8d157d269ec99.mp3str"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Fart.mp3"
+dest_files=["res://.godot/imported/Fart.mp3-255e3d43818caff027d8d157d269ec99.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
