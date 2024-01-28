@@ -27,7 +27,7 @@ name = "Master.strings"
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_77dol")
-track_name = "test_extra"
+track_name = "Music"
 
 [node name="Loader" type="StudioBankLoader" parent="."]
 load_on = 1
@@ -52,7 +52,10 @@ color = Color(0.0901961, 0.0431373, 0.101961, 1)
 
 [node name="jester_stage" parent="Level" instance=ExtResource("3_tswuq")]
 position = Vector2(95, 42)
+layer_0/name = "grid"
 layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0)
+layer_1/name = "events"
+layer_1/tile_data = PackedInt32Array()
 
 [node name="Player" parent="Level" instance=ExtResource("1_5sceh")]
 unique_name_in_owner = true
@@ -65,7 +68,7 @@ unique_name_in_owner = true
 [node name="Decoration" type="Node2D" parent="Level"]
 
 [node name="king" parent="Level/Decoration" instance=ExtResource("4_nwnqj")]
-position = Vector2(264, 136)
+position = Vector2(251, 136)
 script = ExtResource("5_atjqf")
 
 [node name="Sequencer_slot" type="Node2D" parent="Level/Decoration" node_paths=PackedStringArray("animated_sprites")]

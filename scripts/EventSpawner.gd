@@ -12,7 +12,7 @@ enum Event_Type{
 	EVENT_TYPE_BALLS,
 }
 
-var difficulty := 0
+var difficulty := 4
 var distances = [
 	[2, 3],
 	[2, 3, 4],
@@ -36,7 +36,7 @@ func _on_spawn_event(event_type, grid_location, timestamp):
 
 
 func pick_location() -> Vector2i:
-	var player_position = Vector2.ONE * 3 #stage_info.get_current_cell_position()
+	var player_position = Vector2.ONE * 2 #stage_info.get_current_cell_position()
 	var current_distance = distances[difficulty].pick_random()
 	var candidates = get_cells_at_distance(player_position, current_distance)
 	
@@ -69,15 +69,13 @@ func get_cells_at_distance(from: Vector2i, distance: int) -> Array:
 			var new_cell = cells[i-1] + d
 			cells.append(new_cell)
 
-	# cells = cells.filter(func (x): return x == x.clamp(Vector2i.ZERO, stage.get_grid_size()))
+	#cells = cells.filter(func (x): return x == x.clamp(Vector2i.ZERO, stage.get_grid_size()))
 
+	print(cells)
 
-	for c in cells:
-		print("HERE")
-		var s = Sprite2D.new()
-		s.texture = load("res://sprites/tiles/banana.ase.png")
-		stage.add_child(s)
-		stage.set_obj_on_cell(s, c)
+	for cell_coordinates in cells:
+		print("set")
+		stage.set_entity_on_cell(3, cell_coordinates, 1)
 	
 	return cells
 

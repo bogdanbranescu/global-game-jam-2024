@@ -39,13 +39,14 @@ func create_map(sizeX: int, sizeY: int):
 	pass;
 
 
-func set_obj_on_cell(obj: Node2D, cellVector: Vector2i):
-	if(obj == null):
-		print_debug("ERROR: Setting object on cell is null");
+func set_entity_on_cell(entity_index: int, cellVector: Vector2i, layer: int):
+	set_cell(layer, cellVector, entity_index, Vector2i(0,0))
+	# if(obj == null):
+	# 	print_debug("ERROR: Setting object on cell is null");
 
-	var local_pos = map_to_local(cellVector);
-	obj.set_position(local_pos);
-	pass;
+	# var local_pos = map_to_local(cellVector);
+	# obj.set_position(local_pos);
+	# pass;
 
 
 func get_position_on_cell(cellVector: Vector2i):

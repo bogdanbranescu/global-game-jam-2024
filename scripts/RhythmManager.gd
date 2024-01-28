@@ -24,7 +24,8 @@ var tolerance : int = 100
 
 
 func _ready() -> void:
-	spawn_event.connect(EventSpawner._on_spawn_event)
+	#spawn_event.connect(EventSpawner._on_spawn_event)
+	pass
 
 
 func _physics_process(_delta) -> void:
@@ -60,6 +61,8 @@ func generate_movement_windows() -> void:
 	
 	for t in timeline_events:
 		timeline_windows.append([max(0, t - tolerance), t + tolerance])
+
+	print(timeline_events.size(), timeline_events)
 	
 
 func _on_new_timestamp(tstamp : int) -> void:
