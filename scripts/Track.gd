@@ -57,8 +57,10 @@ func _physics_process(_delta) -> void:
 	generated_timestamp.emit(current_timestamp)
 
 	if abs(previous_timestamp - current_timestamp) > 1000:
+		print("prev timestamp: " + str(previous_timestamp));
+		print("curr timestamp: " + str(current_timestamp));
 		jumped.emit()
-
+		
 
 func _on_instance_stop() -> void:
 	if instance.get_playback_state() == FMODStudioModule.FMOD_STUDIO_PLAYBACK_PLAYING:

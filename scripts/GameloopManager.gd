@@ -14,13 +14,22 @@ var game_is_active = false;
 
 
 func _ready():
+
+	RhythmManager.can_move_changed.connect(logSomething);
+	
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
 	start_a_countdown();
 	pass;
 
+func logSomething():
+	pass;
+	# print("timestamp ", RhythmManager.timestamp);
+	# print("eid ", RhythmManager.eid);
+	# print("wid ", RhythmManager.wid);
+	# print("------------------");
 
 func _handle_decrease_fun_bar():
-	print("PEW PEW");
+
 	fun_bar_level -= 1.5;
 	fun_bar_level = clamp(fun_bar_level, 0, 100);
 
@@ -33,6 +42,9 @@ func _handle_decrease_fun_bar():
 func _process(_delta):
 	if not game_is_active:
 		return;
+
+	if fun_bar_level <= 0:
+		_handle_lose_game();
 
 
 
@@ -166,6 +178,8 @@ func _handle_pressed_off_beat():
 
 
 func _handle_lose_game():
+	game_is_active = false;
+
 	print_debug("handling lose game");
 
 	GameloopManager.pause_track.emit();
