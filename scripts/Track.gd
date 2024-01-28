@@ -2,6 +2,7 @@ extends Node
 
 
 signal generated_timestamp(ts)
+signal jumped
 
 @export var event_name: String
 var instance: EventInstance
@@ -15,11 +16,13 @@ var player_timestamp : int = 0
 var movement_diff
 
 var current_timestamp : int = 0
+var previous_timestamp : int = 0
 
 
 func _ready() -> void:
 	event_name = self.name
 	generated_timestamp.connect(RhythmManager._on_new_timestamp)
+	jumped.connect(RhythmManager._on_jump)
 	RhythmManager.track_name = event_name
 
 	instance = FMODRuntime.create_instance_path("event:/" + event_name)
@@ -44,12 +47,17 @@ func _on_player_moved() -> void:
 
 
 func event_callback(_args) -> void:
-	print("###" + str(instance.get_timeline_position()))
+	pass
+	#print("###" + str(instance.get_timeline_position()))
 	
 
 func _physics_process(_delta) -> void:
+	previous_timestamp = current_timestamp
 	current_timestamp = instance.get_timeline_position()
 	generated_timestamp.emit(current_timestamp)
+
+	if abs(previous_timestamp - current_timestamp) > 1000:
+		jumped.emit()
 
 
 func _on_instance_stop() -> void:

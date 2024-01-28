@@ -12,7 +12,7 @@ enum Event_Type{
 	EVENT_TYPE_BALLS,
 }
 
-var difficulty := 4
+var difficulty := 0
 var distances = [
 	[2, 3],
 	[2, 3, 4],
@@ -23,7 +23,7 @@ var distances = [
 
 
 func _ready():	
-	print(pick_location())
+	spawn_event()
 
 
 func _on_spawn_event(event_type, grid_location, timestamp):
@@ -35,8 +35,18 @@ func _on_spawn_event(event_type, grid_location, timestamp):
 	new_stage_event.spawn()
 
 
+func spawn_event():
+	var event_location = Vector2i(randi() % 5, randi() % 5)
+	var player_location = stage_info.get_current_cell_position()
+	while player_location == event_location:
+		event_location = Vector2i(randi() % 5, randi() % 5)
+	stage.set_entity_on_cell(3, event_location, 1)
+	
+	return event_location
+
+
 func pick_location() -> Vector2i:
-	var player_position = Vector2.ONE * 2 #stage_info.get_current_cell_position()
+	var player_position = Vector2.ONE * 2 #
 	var current_distance = distances[difficulty].pick_random()
 	var candidates = get_cells_at_distance(player_position, current_distance)
 	

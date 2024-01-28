@@ -1,5 +1,6 @@
 extends Node
 
+
 signal spawn_event
 signal can_move_changed
 signal tick_event
@@ -63,10 +64,15 @@ func generate_movement_windows() -> void:
 	
 	for t in timeline_events:
 		timeline_windows.append([max(0, t - tolerance), t + tolerance])
-
-	print(timeline_events.size(), timeline_events)
-	print(timeline_windows.size(), timeline_windows)
 	
 
 func _on_new_timestamp(tstamp : int) -> void:
 	timestamp = tstamp
+
+
+func _on_jump():
+	for i in range(timeline_events.size()):
+		if timestamp > timeline_events[i]:
+			eid = i
+			wid = eid
+			break
