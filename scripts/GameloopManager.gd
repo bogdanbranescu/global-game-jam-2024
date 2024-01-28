@@ -5,7 +5,7 @@ signal pause_track
 
 signal wrong_beat
 
-var event_collecter_tracker = EventCollectTracker.new(); 
+# var event_collecter_tracker = EventCollectTracker.new(); 
 
 var movementTracker = MovementTracker.new();
 
@@ -15,7 +15,8 @@ var game_is_active = false;
 
 func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
-	Start_Game();
+	start_a_countdown();
+	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -33,19 +34,48 @@ func _process(_delta):
 
 
 
+var starting_number = 4
+var current_number = 4;
+
+func test():
+	var label_node = get_node(glb.label_path) as Label
+
+	if current_number <= 0:
+		current_number = 0;
+	
+	current_number -= 1;
+	label_node.text = str(current_number);
+
+func start_a_countdown():
+	var label_node = get_node(glb.label_path) as Label
+	label_node.text = str(starting_number)
+
+	var tween = create_tween()
+
+
+	# Create a sequence of tweens with delays
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
+
+	tween.finished.connect(Start_Game);
+	tween.set_parallel(false)
+	
+
 func Start_Game():
 	game_is_active = true;
 
 	var player = get_node(glb.player_path) as Player;
 	player.move(movementTracker.get_current_world_position());
 
-	event_collecter_tracker = EventCollectTracker.new();
-	event_collecter_tracker.create_new_sequence();
+	# event_collecter_tracker = EventCollectTracker.new();
+	# event_collecter_tracker.create_new_sequence();
 
 	pass;
 
 func _handle_player_collect_event(collected_type: EventSpawner.Event_Type):
-	event_collecter_tracker.invoke_collect_event(collected_type);
+	# event_collecter_tracker.invoke_collect_event(collected_type);
 	pass;
 
 
@@ -121,8 +151,9 @@ func _handle_pressed_off_beat():
 
 	get_node(glb.king_path).invoke_reaction(false);
 
-	fun_bar_level -= 2.5;
-	
+	fun_bar_level -= 1.25;
+
+
 	pass;
 
 
