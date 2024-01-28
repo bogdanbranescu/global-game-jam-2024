@@ -5,6 +5,8 @@ signal pause_track
 
 signal wrong_beat
 
+var event_collecter_tracker = EventCollectTracker.new(); 
+
 var movementTracker = MovementTracker.new();
 
 var fun_bar_level = 50;
@@ -30,6 +32,14 @@ func _process(_delta):
 
 func Start_Game():
 	game_is_active = true;
+
+	event_collecter_tracker = EventCollectTracker.new();
+	event_collecter_tracker.create_new_sequence();
+
+	pass;
+
+func _handle_player_collect_event(collected_type: EventSpawner.Event_Type):
+	event_collecter_tracker.invoke_collect_event(collected_type);
 	pass;
 
 
@@ -136,3 +146,58 @@ class MovementTracker:
 
 	func get_current_world_position() -> Vector2:
 		return _jester_stage.get_position_on_cell(currentCellPosition);
+
+
+class EventCollectTracker:
+	var next_event_to_collect_index = 0;
+	var current_event_sequence = [];
+
+	func create_new_sequence():
+		var sequence = [];
+
+		next_event_to_collect_index = 0;
+
+		current_event_sequence = [];
+
+		for event_type in EventSpawner.Event_Type:
+			sequence.push_front(event_type);
+			sequence.push_front(event_type);
+		
+		shuffle_array(sequence);
+
+		for i in range(3):
+			var event_index = randi() % sequence.size();
+			var selected_event = sequence[event_index];
+			current_event_sequence.push_front(selected_event);
+
+		print("current_event_sequence", current_event_sequence);
+
+
+		# WARNING: This is a quick update because banana is the only event implement from the game design
+		# REMOVE THIS WHEN OTHER EVENTS ARE IMPLEMENTED
+		current_event_sequence = [
+			EventSpawner.Event_Type.EVENT_TYPE_BANANA,
+			EventSpawner.Event_Type.EVENT_TYPE_BANANA,
+			EventSpawner.Event_Type.EVENT_TYPE_BANANA,
+		]
+
+
+
+	func shuffle_array(arr):
+		var n = arr.size()
+		for i in range(n - 1, 0, -1):
+			var j = randi() % (i + 1)
+			arr[i] = arr[j];
+			arr[j] =  arr[i];
+
+	func invoke_collect_event(collected_event: EventSpawner.Event_Type):
+		var collected_proper_event = current_event_sequence[next_event_to_collect_index] == collected_event;
+
+		if collected_proper_event:
+			next_event_to_collect_index += 1;
+			if next_event_to_collect_index >= current_event_sequence.size():
+				current_event_sequence = create_new_sequence();
+				next_event_to_collect_index = 0;
+		else:
+			current_event_sequence = create_new_sequence();
+			next_event_to_collect_index = 0;
