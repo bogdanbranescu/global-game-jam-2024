@@ -114,6 +114,10 @@ func _handle_pressed_on_beat():
 		_handle_player_collect_event(EventSpawner.Event_Type.EVENT_TYPE_BANANA);
 		fun_bar_level += 10.5;
 
+		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;
+		jester_stage.remove_tile_event_from_cell(movementTracker.get_current_cell_position());
+		
+
 	pass;
 	
 	
@@ -124,7 +128,8 @@ func _handle_pressed_off_beat():
 	get_node(glb.king_path).invoke_reaction(false);
 
 	fun_bar_level -= 2.5;
-	
+
+
 	pass;
 
 
