@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dy7nc8rqjdus8"
+path="res://.godot/imported/Fart 2.wav-3eb3f353c2b5c9ca7b88b5dbec1566f4.sample"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Fart 2.wav"
+dest_files=["res://.godot/imported/Fart 2.wav-3eb3f353c2b5c9ca7b88b5dbec1566f4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

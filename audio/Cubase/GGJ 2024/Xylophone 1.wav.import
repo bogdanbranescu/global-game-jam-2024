@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxguy8tq25x61"
+path="res://.godot/imported/Xylophone 1.wav-cf59c4254b514d63af85aef67a775538.sample"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Xylophone 1.wav"
+dest_files=["res://.godot/imported/Xylophone 1.wav-cf59c4254b514d63af85aef67a775538.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5m6onqx57701"
+path="res://.godot/imported/Xylophone 3.mp3-1c18b15459f4177dc2e46ffccd67ce7e.mp3str"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Xylophone 3.mp3"
+dest_files=["res://.godot/imported/Xylophone 3.mp3-1c18b15459f4177dc2e46ffccd67ce7e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

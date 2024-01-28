@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://o5k31t11chom"
+path="res://.godot/imported/Young boy gasps grunts small inhales exhales.wav-c04cc1eee3f63fc0e06933be401be829.sample"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Reactii/Young boy gasps grunts small inhales exhales.wav"
+dest_files=["res://.godot/imported/Young boy gasps grunts small inhales exhales.wav-c04cc1eee3f63fc0e06933be401be829.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

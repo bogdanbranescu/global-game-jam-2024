@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3vxy6jngl56l"
+path="res://.godot/imported/Cowbell 3.wav-d246cc5a154b3c278ecebb4275dfb625.sample"
+
+[deps]
+
+source_file="res://audio/Cubase/GGJ 2024/Cowbell 3.wav"
+dest_files=["res://.godot/imported/Cowbell 3.wav-d246cc5a154b3c278ecebb4275dfb625.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
