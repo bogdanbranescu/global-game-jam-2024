@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e4ytexcgqnip"
-path="res://.godot/imported/banana.ase-b3742df994e1082101908e42a54d30d0.ctex"
+uid="uid://dgi2ga875hxj1"
+path="res://.godot/imported/stage-tile-edge-down.ase-5ca1d467fe9c1c0c521904d6048dc4a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tiles/banana.ase"
-dest_files=["res://.godot/imported/banana.ase-b3742df994e1082101908e42a54d30d0.ctex"]
+source_file="res://sprites/stage-tile-edge-down.ase"
+dest_files=["res://.godot/imported/stage-tile-edge-down.ase-5ca1d467fe9c1c0c521904d6048dc4a6.ctex"]
 
 [params]
 

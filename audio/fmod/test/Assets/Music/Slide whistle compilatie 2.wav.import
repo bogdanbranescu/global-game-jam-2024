@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bdtdq6pne0fga"
+path="res://.godot/imported/Slide whistle compilatie 2.wav-2eb6410dec575337c2b27c29a5d42181.sample"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/Music/Slide whistle compilatie 2.wav"
+dest_files=["res://.godot/imported/Slide whistle compilatie 2.wav-2eb6410dec575337c2b27c29a5d42181.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

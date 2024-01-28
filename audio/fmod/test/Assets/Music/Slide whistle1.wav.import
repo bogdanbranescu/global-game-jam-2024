@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://e6kri0r7ra3a"
+path="res://.godot/imported/Slide whistle1.wav-d3a2e76938d09a04a231a59b53b621e4.sample"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/Music/Slide whistle1.wav"
+dest_files=["res://.godot/imported/Slide whistle1.wav-d3a2e76938d09a04a231a59b53b621e4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

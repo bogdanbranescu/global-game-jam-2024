@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcl83kk4ike"
+path="res://.godot/imported/Slide whistle compilatie.mp3-7969c55e203db3fc3d615ed44836cdb2.mp3str"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/Music/Slide whistle compilatie.mp3"
+dest_files=["res://.godot/imported/Slide whistle compilatie.mp3-7969c55e203db3fc3d615ed44836cdb2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

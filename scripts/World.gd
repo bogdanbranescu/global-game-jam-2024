@@ -20,4 +20,3 @@ func start_track() -> void:
 	%Player.moved.connect(current_track._on_player_moved)					# PLAYER - GAME
 	GameloopManager.pause_track.connect(current_track._on_instance_pause)			# TRACK - GAME
 	GameloopManager.stop_track.connect(current_track._on_instance_stop)				# TRACK - GAME
-	# current_track.grade_player.connect(%Player._on_grade_received)			# N/A

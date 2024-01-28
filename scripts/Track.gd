@@ -1,7 +1,6 @@
 extends Node
 
 
-signal grade_player(grade)
 signal generated_timestamp(ts)
 
 @export var event_name: String
@@ -26,7 +25,7 @@ func _ready() -> void:
 	instance = FMODRuntime.create_instance_path("event:/" + event_name)
 	instance.start()
 	# DEBUG
-	instance.set_volume(0.0)
+	#instance.set_volume(0.0)
 
 	var type = FMODStudioModule.FMOD_STUDIO_EVENT_CALLBACK_SOUND_PLAYED
 	# FMOD_STUDIO_EVENT_CALLBACK_CREATED					1
@@ -47,12 +46,6 @@ func _on_player_moved() -> void:
 func event_callback(_args) -> void:
 	print(instance.get_timeline_position())
 	
-
-func compute_grade() -> void:
-	pass
-	#var movement_diff_early = beat_timestamp + beat_duration - player_timestamp
-	#var movement_diff_late = player_timestamp - beat_timestamp 
-
 
 func _physics_process(_delta) -> void:
 	current_timestamp = instance.get_timeline_position()

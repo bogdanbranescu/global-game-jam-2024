@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://epwxe1ipnkkj"
+path="res://.godot/imported/Ducktoy quackers (pentru vorbit).wav-ef0662e6b94953e4b8ebcaa2e2badd58.sample"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/Music/Ducktoy quackers (pentru vorbit).wav"
+dest_files=["res://.godot/imported/Ducktoy quackers (pentru vorbit).wav-ef0662e6b94953e4b8ebcaa2e2badd58.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
