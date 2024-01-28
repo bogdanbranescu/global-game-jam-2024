@@ -20,7 +20,7 @@ var timeline_windows : Array[Array]
 var wid : int = 0
 
 var timestamp : int
-var tolerance : int = 450
+var tolerance : int = 100
 
 
 func _ready() -> void:
