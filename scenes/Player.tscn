@@ -12,6 +12,7 @@ script = ExtResource("1_ul4ht")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite" parent="." instance=ExtResource("2_3k4vx")]
+position = Vector2(0, -4)
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3o1ovhvpcnt7"
+path="res://.godot/imported/polychrombo - Pygmy Marmoset.wav-5767753c40f9b1b571b886fb890e75a5.sample"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/Music/polychrombo - Pygmy Marmoset.wav"
+dest_files=["res://.godot/imported/polychrombo - Pygmy Marmoset.wav-5767753c40f9b1b571b886fb890e75a5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

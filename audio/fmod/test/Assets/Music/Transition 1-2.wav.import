@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dk1mo7xliv8sa"
+path="res://.godot/imported/Transition 1-2.wav-0968add37b0bd8a363d66a4363852590.sample"
+
+[deps]
+
+source_file="res://audio/fmod/test/Assets/Music/Transition 1-2.wav"
+dest_files=["res://.godot/imported/Transition 1-2.wav-0968add37b0bd8a363d66a4363852590.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
