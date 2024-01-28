@@ -25,8 +25,11 @@ func _process(_delta):
 	if fun_bar_level < 0:
 		_handle_lose_game();
 
+
 	var decrease_ratio = 5;
 	fun_bar_level -= decrease_ratio * _delta;
+
+	fun_bar_level = clamp(fun_bar_level, 0, 100);
 
 
 
