@@ -79,7 +79,7 @@ func get_cells_at_distance(from: Vector2i, distance: int) -> Array:
 			var new_cell = cells[i-1] + d
 			cells.append(new_cell)
 
-	#cells = cells.filter(func (x): return x == x.clamp(Vector2i.ZERO, stage.get_grid_size()))
+	cells = cells.filter(func (x): return x == x.clamp(Vector2i.ZERO, stage.get_grid_size()))
 
 	print(cells)
 

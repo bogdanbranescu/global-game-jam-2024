@@ -105,3 +105,4 @@ addons/FMOD/*
 _exports/*
 addons/godot-4-importality-ecc9baa4561de8076e73f68636fee5274ac3a6b9/*
 audio/fmod/test/.unsaved/*
+audio/fmod/test/.user/*
