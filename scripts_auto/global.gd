@@ -9,6 +9,7 @@ var jester_stage_path = "/root/World/Level/jester_stage"
 var player_path = "/root/World/Level/Player"
 var king_path = "/root/World/Level/Decoration/king"
 var label_path = "/root/World/CanvasLayer/UI/Label"
+var worldGameloop_path = "/root/World/WorldGameloop"
 
 var difficulty = 1
 

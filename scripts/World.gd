@@ -28,7 +28,9 @@ func start_track() -> void:
 	current_track.name = track_name
 	add_child(current_track)
 
+	var worldGameloop = get_node(glb.worldGameloop_path) as WorldGameloop;
+
 	# Connect player actions to the track
 	%Player.moved.connect(current_track._on_player_moved)					# PLAYER - GAME
-	GameloopManager.pause_track.connect(current_track._on_instance_pause)			# TRACK - GAME
-	GameloopManager.stop_track.connect(current_track._on_instance_stop)				# TRACK - GAME
+	worldGameloop.pause_track.connect(current_track._on_instance_pause)			# TRACK - GAME
+	worldGameloop.stop_track.connect(current_track._on_instance_stop)				# TRACK - GAME

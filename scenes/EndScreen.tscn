@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://dhx236je310h3"]
+[gd_scene load_steps=2 format=3 uid="uid://dhx236je310h3"]
 
-[node name="World" type="Node2D"]
+[ext_resource type="FontFile" uid="uid://drlqt7niy7gmk" path="res://ui/PixCon.ttf" id="1_ycnpx"]
+
+[node name="EndScreen" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 40.0
+offset_right = 267.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("1_ycnpx")
+theme_override_font_sizes/font_size = 16
+text = "Click any arrow keys to start game"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

@@ -1,4 +1,4 @@
-extends Node
+class_name WorldGameloop extends Node
 
 signal stop_track
 signal pause_track
@@ -14,18 +14,13 @@ var game_is_active = false;
 
 
 func _ready():
+	EventSpawner.set_worldGameLoop(movementTracker);
 
-	RhythmManager.can_move_changed.connect(logSomething);
-	
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
 	start_a_countdown();
 	pass;
 
 var allow_move = false;
-
-func logSomething():
-	pass
-
 
 func _handle_decrease_fun_bar():
 
@@ -183,7 +178,7 @@ func _handle_lose_game():
 
 	print_debug("handling lose game");
 
-	GameloopManager.pause_track.emit();
+	pause_track.emit();
 
 	var source_wav_lose_audio =preload("res://audio/Cubase/GGJ 2024/TrombFart.wav");
 	var lose_audio = AudioStreamPlayer.new();

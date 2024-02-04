@@ -23,7 +23,6 @@ glb="*res://scripts_auto/global.gd"
 dbg="*res://scripts_auto/_debug.gd"
 RhythmManager="*res://scripts/RhythmManager.gd"
 TrackParser="*res://scripts/TrackParser.gd"
-GameloopManager="*res://scripts/GameloopManager.gd"
 EventSpawner="*res://scripts/EventSpawner.gd"
 
 [display]

@@ -3,7 +3,7 @@ extends Node
 
 @onready var stage_event = load("res://scenes/StageEvent.tscn")
 
-@onready var stage_info = GameloopManager.movementTracker
+var stage_info: WorldGameloop.MovementTracker;
 @onready var stage = get_node(glb.jester_stage_path) as Jester_Stage
 
 enum Event_Type{
@@ -27,6 +27,8 @@ func _ready():
 	spawn_event()
 	spawn_event()
 
+func set_worldGameLoop(worldGameLoop: WorldGameloop.MovementTracker):
+	stage_info = worldGameLoop
 
 func _on_spawn_event(event_type, grid_location, timestamp):
 	var new_stage_event = stage_event.instantiate()
