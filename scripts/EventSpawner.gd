@@ -24,6 +24,8 @@ var distances = [
 
 func _ready():
 	spawn_event()
+	spawn_event()
+	spawn_event()
 
 
 func _on_spawn_event(event_type, grid_location, timestamp):
@@ -36,10 +38,16 @@ func _on_spawn_event(event_type, grid_location, timestamp):
 
 
 func spawn_event():
-	var event_location = Vector2i(randi() % 5, randi() % 5)
-	var player_location = stage_info.get_current_cell_position()
-	while player_location == event_location:
-		event_location = Vector2i(randi() % 5, randi() % 5)
+	var free_cells = []
+	var grid_size = stage.get_grid_size()
+	for x in range(grid_size.x):
+		for y in range(grid_size.y):
+			var player_location = stage_info.get_current_cell_position()
+			var maybe_free_cell = Vector2i(x, y)
+			if stage.get_cell_source_id(1, maybe_free_cell) == -1 and  maybe_free_cell != player_location:
+				free_cells.append(Vector2i(x, y))
+	
+	var event_location = free_cells.pick_random() 
 	stage.set_entity_on_cell(3, event_location, 1)
 	
 	return event_location

@@ -194,6 +194,7 @@ func _handle_lose_game():
 	lose_audio.stream = source_wav_lose_audio;
 	lose_audio.play();
 
+
 class MovementTracker:
 	var minCellPos = Vector2i.ZERO;
 	var maxCellPos = Vector2i.ZERO;
