@@ -14,8 +14,6 @@ var game_is_active = false;
 
 
 func _ready():
-	EventSpawner.set_worldGameLoop(movementTracker);
-
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
 	start_a_countdown();
 	pass;
