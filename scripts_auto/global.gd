@@ -11,3 +11,5 @@ var king_path = "/root/World/Level/Decoration/king"
 var label_path = "/root/World/CanvasLayer/UI/Label"
 
 var difficulty = 1
+
+var test_version := true

@@ -7,7 +7,13 @@ var subevent_type = "SingleSound"
 var offset := 0
 
 func get_subevents(event_name) -> Array:
-	return parse_timeline(event_name)
+	#return parse_timeline(event_name)
+	return parse_hardcoded_timeline()
+
+
+func parse_hardcoded_timeline() -> Array:
+	var hardcored_timeline = range(4, 131).map(func(x): return x * 1000)
+	return hardcored_timeline
 
 
 func parse_timeline(event_name) -> Array:

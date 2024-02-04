@@ -22,7 +22,7 @@ var distances = [
 ]
 
 
-func _ready():	
+func _ready():
 	spawn_event()
 
 

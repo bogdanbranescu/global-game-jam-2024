@@ -43,6 +43,10 @@ movie_writer/movie_file="/Users/bnx/gd/global-game-jam-2024/_movie/movie.avi"
 
 enabled=PackedStringArray("res://addons/FMOD/plugin.cfg", "res://addons/nklbdev.importality/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [fmod]
 
 settings/banks_path="res://audio/fmod/test/Build/Desktop"

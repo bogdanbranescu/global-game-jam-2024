@@ -38,5 +38,6 @@ func handle_pressed_on_beat():
 func handle_stutter():
 	$AnimatedSprite.animation = "Stutter"
 
+
 func _on_animated_sprite_animation_looped():
 	$AnimatedSprite.animation = "Idle"
