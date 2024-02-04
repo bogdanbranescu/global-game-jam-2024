@@ -24,11 +24,8 @@ func _ready():
 var allow_move = false;
 
 func logSomething():
-	pass;
-	# print("timestamp ", RhythmManager.timestamp);
-	# print("eid ", RhythmManager.eid);
-	# print("wid ", RhythmManager.wid);
-	# print("------------------");
+	pass
+
 
 func _handle_decrease_fun_bar():
 
