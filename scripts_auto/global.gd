@@ -10,6 +10,7 @@ var player_path = "/root/World/Level/Player"
 var king_path = "/root/World/Level/Decoration/king"
 var label_path = "/root/World/CanvasLayer/UI/Label"
 var worldGameloop_path = "/root/World/WorldGameloop"
+var eventSpawner_path = "/root/World/EventSpawner"
 
 var difficulty = 1
 

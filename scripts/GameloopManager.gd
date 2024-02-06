@@ -13,6 +13,8 @@ var fun_bar_level = 50;
 var game_is_active = false;
 
 
+@onready var EventSpawner: EventSpawner = get_node(glb.eventSpawner_path) as EventSpawner;
+
 func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
 	start_a_countdown();
@@ -82,9 +84,7 @@ func Start_Game():
 
 	pass;
 
-func _handle_player_collect_event(collected_type: EventSpawner.Event_Type):
-	# event_collecter_tracker.invoke_collect_event(collected_type);
-	pass;
+
 
 
 func _physics_process(_delta):
@@ -148,7 +148,6 @@ func _handle_pressed_on_beat():
 	get_node(glb.king_path).invoke_reaction(true);
 	
 	if(movementTracker.check_if_standing_on_event()):
-		_handle_player_collect_event(EventSpawner.Event_Type.EVENT_TYPE_BANANA);
 		fun_bar_level += 5.5;
 
 		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;

@@ -1,4 +1,4 @@
-extends Node
+class_name EventSpawner extends Node
 
 
 @onready var stage_event = load("res://scenes/StageEvent.tscn")

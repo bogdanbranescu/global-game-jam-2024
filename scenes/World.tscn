@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cuopgdw7p7tsl"]
+[gd_scene load_steps=16 format=3 uid="uid://cuopgdw7p7tsl"]
 
 [ext_resource type="PackedScene" uid="uid://7774yx0l05pn" path="res://scenes/Player.tscn" id="1_5sceh"]
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_77dol"]
 [ext_resource type="Script" path="res://scripts/GameloopManager.gd" id="2_e3fhf"]
+[ext_resource type="Script" path="res://scripts/EventSpawner.gd" id="3_1y7eo"]
 [ext_resource type="PackedScene" uid="uid://s7a862jc2sfo" path="res://scenes/jester_stage.tscn" id="3_tswuq"]
 [ext_resource type="Texture2D" uid="uid://cdghlqbvrdrms" path="res://sprites/meter-frame.png" id="4_dqvry"]
 [ext_resource type="PackedScene" uid="uid://c1f7ihth4m6mh" path="res://sprites/king.ase" id="4_nwnqj"]
@@ -33,6 +34,9 @@ track_name = "Music_test"
 
 [node name="WorldGameloop" type="Node" parent="."]
 script = ExtResource("2_e3fhf")
+
+[node name="EventSpawner" type="Node" parent="."]
+script = ExtResource("3_1y7eo")
 
 [node name="Loader" type="StudioBankLoader" parent="."]
 load_on = 1
