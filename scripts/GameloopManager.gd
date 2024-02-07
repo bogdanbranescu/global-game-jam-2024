@@ -13,7 +13,7 @@ var fun_bar_level = 50;
 var game_is_active = false;
 
 
-@onready var EventSpawner: EventSpawner = get_node(glb.eventSpawner_path) as EventSpawner;
+@onready var _eventSpawner: EventSpawner = get_node(glb.eventSpawner_path) as EventSpawner;
 
 func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
@@ -153,7 +153,7 @@ func _handle_pressed_on_beat():
 		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;
 		jester_stage.remove_tile_event_from_cell(movementTracker.get_current_cell_position());
 
-		EventSpawner.spawn_event();
+		_eventSpawner.spawn_event();
 
 	pass;
 	
