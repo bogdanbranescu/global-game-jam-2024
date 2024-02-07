@@ -140,8 +140,6 @@ func handle_input() -> void:
 
 
 func _handle_pressed_on_beat():
-	print_debug("handling pressed on beat");
-
 	var player = get_node(glb.player_path) as Player;
 	player.handle_pressed_on_beat();
 
@@ -172,8 +170,6 @@ func _handle_pressed_off_beat():
 
 func _handle_lose_game():
 	game_is_active = false;
-
-	print_debug("handling lose game");
 
 	pause_track.emit();
 
@@ -222,7 +218,6 @@ class MovementTracker:
 		return _jester_stage.get_position_on_cell(currentCellPosition);
 
 	func check_if_standing_on_event():
-		print("get_current_cell_position", get_current_cell_position());
 		var cell_id = _jester_stage.get_cell_source_id(1, get_current_cell_position());
 
 		var banana_tile_id = 3;
@@ -253,8 +248,6 @@ class EventCollectTracker:
 			var event_index = randi() % sequence.size();
 			var selected_event = sequence[event_index];
 			current_event_sequence.push_front(selected_event);
-
-		print("current_event_sequence", current_event_sequence);
 
 
 		# WARNING: This is a quick update because banana is the only event implement from the game design

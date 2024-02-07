@@ -26,7 +26,6 @@ var tolerance : int = 150
 
 
 func _ready() -> void:
-	print("RHYTHM MANAGER READY!")
 	#spawn_event.connect(EventSpawner._on_spawn_event)
 	pass
 
@@ -82,7 +81,6 @@ func _on_new_timestamp(tstamp : int) -> void:
 
 
 func _on_jump():
-	print("AAAAAAAAAAAA");
 	for i in range(timeline_events.size()):
 		if timestamp < timeline_events[i]:
 			eid = i
