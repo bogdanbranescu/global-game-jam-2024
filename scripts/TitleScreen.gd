@@ -31,6 +31,8 @@ func _process(delta):
 		var worldScene = preload("res://scenes/World.tscn").instantiate();
 		get_tree().root.add_child(worldScene);
 
+		RhythmManager.set_physics_process(true);
+
 		(self as Node2D).free();
 		pass;
 
