@@ -5,10 +5,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	loop_fade_in_and_fade_out();
-	RhythmManager.set_physics_process(false);
-
-	
-	pass # Replace with function body.
+	pass;
 
 
 func loop_fade_in_and_fade_out():
@@ -30,8 +27,6 @@ func _process(delta):
 	if (pressed_arrow):
 		var worldScene = preload("res://scenes/World.tscn").instantiate();
 		get_tree().root.add_child(worldScene);
-
-		RhythmManager.set_physics_process(true);
 
 		(self as Node2D).free();
 		pass;

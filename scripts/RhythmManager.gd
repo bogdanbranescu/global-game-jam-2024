@@ -26,6 +26,7 @@ var tolerance : int = 150
 
 
 func _ready() -> void:
+	toggle_activity(false);
 	#spawn_event.connect(EventSpawner._on_spawn_event)
 	pass
 
