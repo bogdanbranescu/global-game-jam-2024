@@ -45,7 +45,7 @@ func _process(_delta):
 var starting_number = 4
 var current_number = 4;
 
-func test():
+func decrement_countdown():
 	var label_node = get_node(glb.label_path) as Label
 
 	if current_number <= 0:
@@ -62,10 +62,10 @@ func start_a_countdown():
 
 
 	# Create a sequence of tweens with delays
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
 
 	tween.finished.connect(Start_Game);
 	tween.set_parallel(false)
