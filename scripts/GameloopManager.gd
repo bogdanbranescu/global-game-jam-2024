@@ -179,9 +179,22 @@ func _handle_lose_game():
 
 	var source_wav_lose_audio =preload("res://audio/Cubase/GGJ 2024/TrombFart.wav");
 	var lose_audio = AudioStreamPlayer.new();
+
+	lose_audio.finished.connect(
+		func():
+			var lose_scene = preload("res://scenes/EndScreen.tscn").instantiate();
+			get_tree().get_root().add_child(lose_scene);
+
+			RhythmManager.reset();
+			
+			pass;
+			);
+
+
 	add_child(lose_audio);
 	lose_audio.stream = source_wav_lose_audio;
 	lose_audio.play();
+
 
 
 class MovementTracker:

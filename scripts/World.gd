@@ -24,6 +24,9 @@ func _process(_delta) -> void:
 
 
 func start_track() -> void:
+
+	RhythmManager.toggle_activity(true);
+
 	current_track = Track.instantiate()
 	current_track.name = track_name
 	add_child(current_track)

@@ -26,12 +26,24 @@ var tolerance : int = 150
 
 
 func _ready() -> void:
+	print("RHYTHM MANAGER READY!")
 	#spawn_event.connect(EventSpawner._on_spawn_event)
 	pass
 
 func _physics_process(_delta) -> void:
 	check_movement()
 	check_spawn()
+
+func reset() -> void:
+	eid = 0
+	wid = 0
+	timestamp = 0
+	can_move = false
+	generate_movement_windows();
+	toggle_activity(false);
+
+func toggle_activity(active: bool) -> void:
+	set_physics_process(active);
 
 
 func check_movement():
