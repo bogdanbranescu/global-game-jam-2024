@@ -26,6 +26,7 @@ func _ready():
 	spawn_event()
 	spawn_event()
 	spawn_event()
+	spawn_event()
 
 
 func _on_spawn_event(event_type, grid_location, timestamp):

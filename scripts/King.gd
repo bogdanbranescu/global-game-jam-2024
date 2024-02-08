@@ -18,7 +18,7 @@ func _process(delta):
 
 
 func invoke_reaction(is_happy: bool):
-	timer_to_switch_back = 0.5;
+	timer_to_switch_back = 0.4;
 	has_reaction = true;
 	if(is_happy):
 		play("Happy");

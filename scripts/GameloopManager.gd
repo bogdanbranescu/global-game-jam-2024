@@ -40,6 +40,10 @@ func _process(_delta):
 	if fun_bar_level <= 0:
 		_handle_lose_game();
 
+	if fun_bar_level >= 100 and glb.difficulty < 4:
+		fun_bar_level = 50.0
+		get_node(glb.world_path).current_track.update_difficulty()
+
 
 
 var starting_number = 4

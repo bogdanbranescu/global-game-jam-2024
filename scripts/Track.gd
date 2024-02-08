@@ -74,4 +74,6 @@ func _on_instance_pause() -> void:
 
 
 func update_difficulty():
+	glb.difficulty = min(glb.difficulty + 1, 4)
 	FMODStudioModule.get_studio_system().set_parameter_by_name("Progress1", glb.difficulty, false)
+	get_node(glb.world_path).tolerance -= 10

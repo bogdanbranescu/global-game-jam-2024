@@ -12,8 +12,27 @@ func get_subevents(event_name) -> Array:
 
 
 func parse_hardcoded_timeline() -> Array:
-	var hardcored_timeline = range(4, 131).map(func(x): return x * 1000)
-	return hardcored_timeline
+	var formulas = [
+		[8, 0, 1000, 2000, 3000],
+		[8, 0, 1000, 2000, 3000, 3500],
+		[8, 0, 1000, 1500, 2000, 3000, 3500],
+		[8, 0, 1000, 1500, 2000, 2500, 3000, 3500]
+	]
+
+	var intro_length = 4000		# Intro length
+	var hardcoded_timeline = []
+	
+	var timestamp_ref = intro_length
+
+	for f in formulas:
+		for i in range(f[0]):
+			hardcoded_timeline +=  f.slice(1).map(func(x): return x + timestamp_ref)
+			timestamp_ref += 4000
+
+	print(hardcoded_timeline)
+
+	#var hardcoded_timeline = range(4, 131).map(func(x): return x * 1000)
+	return hardcoded_timeline
 
 
 func parse_timeline(event_name) -> Array:
