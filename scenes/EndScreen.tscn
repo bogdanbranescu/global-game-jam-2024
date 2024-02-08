@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhx236je310h3"]
+[gd_scene load_steps=3 format=3 uid="uid://dhx236je310h3"]
 
+[ext_resource type="Script" path="res://scripts/EndScreen.gd" id="1_oc182"]
 [ext_resource type="FontFile" uid="uid://drlqt7niy7gmk" path="res://ui/PixCon.ttf" id="1_ycnpx"]
 
 [node name="EndScreen" type="Node2D"]
+script = ExtResource("1_oc182")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

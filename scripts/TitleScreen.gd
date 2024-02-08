@@ -5,10 +5,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	loop_fade_in_and_fade_out();
-	RhythmManager.set_physics_process(false);
-
-	
-	pass # Replace with function body.
+	pass;
 
 
 func loop_fade_in_and_fade_out():

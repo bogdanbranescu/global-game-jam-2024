@@ -57,8 +57,6 @@ func _physics_process(_delta) -> void:
 	generated_timestamp.emit(current_timestamp)
 
 	if abs(previous_timestamp - current_timestamp) > 1000:
-		print("prev timestamp: " + str(previous_timestamp));
-		print("curr timestamp: " + str(current_timestamp));
 		jumped.emit()
 		
 

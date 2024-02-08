@@ -13,7 +13,7 @@ var fun_bar_level = 50;
 var game_is_active = false;
 
 
-@onready var EventSpawner: EventSpawner = get_node(glb.eventSpawner_path) as EventSpawner;
+@onready var _eventSpawner: EventSpawner = get_node(glb.eventSpawner_path) as EventSpawner;
 
 func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
@@ -45,7 +45,7 @@ func _process(_delta):
 var starting_number = 4
 var current_number = 4;
 
-func test():
+func decrement_countdown():
 	var label_node = get_node(glb.label_path) as Label
 
 	if current_number <= 0:
@@ -62,10 +62,10 @@ func start_a_countdown():
 
 
 	# Create a sequence of tweens with delays
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
-	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(test)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
+	tween.tween_property(label_node, 'scale', Vector2(0, 0), 1).from(Vector2(1, 1)).finished.connect(decrement_countdown)
 
 	tween.finished.connect(Start_Game);
 	tween.set_parallel(false)
@@ -140,8 +140,6 @@ func handle_input() -> void:
 
 
 func _handle_pressed_on_beat():
-	print_debug("handling pressed on beat");
-
 	var player = get_node(glb.player_path) as Player;
 	player.handle_pressed_on_beat();
 
@@ -153,7 +151,7 @@ func _handle_pressed_on_beat():
 		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;
 		jester_stage.remove_tile_event_from_cell(movementTracker.get_current_cell_position());
 
-		EventSpawner.spawn_event();
+		_eventSpawner.spawn_event();
 
 	pass;
 	
@@ -173,15 +171,26 @@ func _handle_pressed_off_beat():
 func _handle_lose_game():
 	game_is_active = false;
 
-	print_debug("handling lose game");
-
 	pause_track.emit();
 
 	var source_wav_lose_audio =preload("res://audio/Cubase/GGJ 2024/TrombFart.wav");
 	var lose_audio = AudioStreamPlayer.new();
+
+	lose_audio.finished.connect(
+		func():
+			var lose_scene = preload("res://scenes/EndScreen.tscn").instantiate();
+			get_tree().get_root().add_child(lose_scene);
+
+			RhythmManager.reset();
+			
+			pass;
+			);
+
+
 	add_child(lose_audio);
 	lose_audio.stream = source_wav_lose_audio;
 	lose_audio.play();
+
 
 
 class MovementTracker:
@@ -209,7 +218,6 @@ class MovementTracker:
 		return _jester_stage.get_position_on_cell(currentCellPosition);
 
 	func check_if_standing_on_event():
-		print("get_current_cell_position", get_current_cell_position());
 		var cell_id = _jester_stage.get_cell_source_id(1, get_current_cell_position());
 
 		var banana_tile_id = 3;
@@ -240,8 +248,6 @@ class EventCollectTracker:
 			var event_index = randi() % sequence.size();
 			var selected_event = sequence[event_index];
 			current_event_sequence.push_front(selected_event);
-
-		print("current_event_sequence", current_event_sequence);
 
 
 		# WARNING: This is a quick update because banana is the only event implement from the game design
