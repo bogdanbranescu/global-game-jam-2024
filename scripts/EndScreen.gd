@@ -17,6 +17,9 @@ func _process(delta):
 
 	if(pressed_arrow):
 		pressed_restart = true;
-		get_tree().reload_current_scene();
+		var world_scene = preload("res://scenes/World.tscn").instantiate();
+		get_node(glb.world_path).free();
+		get_tree().root.add_child(world_scene);
+
 		(self as Node2D).free();
 	pass
