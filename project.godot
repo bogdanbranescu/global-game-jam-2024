@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 
 FMODRuntime="*res://addons/FMOD/runtime/fmod_runtime_manager.gd"
 glb="*res://scripts_auto/global.gd"
-dbg="*res://scripts_auto/_debug.gd"
 RhythmManager="*res://scripts/RhythmManager.gd"
 TrackParser="*res://scripts/TrackParser.gd"
 
