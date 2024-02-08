@@ -12,6 +12,12 @@ var movementTracker = MovementTracker.new();
 var fun_bar_level = 50;
 var game_is_active = false;
 
+var fun_bar_modifiers = {
+	"beat_passed_decrement": 1.5,
+	"on_beat_increment": 5.5,
+	"off_beat_decrement": 3.0,
+}
+
 
 @onready var _eventSpawner: EventSpawner = get_node(glb.eventSpawner_path) as EventSpawner;
 
@@ -23,8 +29,7 @@ func _ready():
 var allow_move = false;
 
 func _handle_decrease_fun_bar():
-
-	fun_bar_level -= 1.5;
+	fun_bar_level -= fun_bar_modifiers.get("beat_passed_decrement", 0);
 	fun_bar_level = clamp(fun_bar_level, 0, 100);
 
 	if fun_bar_level < 0:
@@ -146,7 +151,7 @@ func _handle_pressed_on_beat():
 	get_node(glb.king_path).invoke_reaction(true);
 	
 	if(movementTracker.check_if_standing_on_event()):
-		fun_bar_level += 5.5;
+		fun_bar_level += fun_bar_modifiers.get("on_beat_increment", 0);
 
 		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;
 		jester_stage.remove_tile_event_from_cell(movementTracker.get_current_cell_position());
@@ -162,7 +167,7 @@ func _handle_pressed_off_beat():
 
 	get_node(glb.king_path).invoke_reaction(false);
 
-	fun_bar_level -= 3.0;
+	fun_bar_level -= fun_bar_modifiers.get("off_beat_decrement", 0);
 
 
 	pass;
