@@ -7,6 +7,8 @@ signal wrong_beat
 
 # var event_collecter_tracker = EventCollectTracker.new(); 
 
+var already_moved_on_beat = false;
+
 var movementTracker = MovementTracker.new();
 
 var fun_bar_level = 50;
@@ -25,8 +27,6 @@ func _ready():
 	movementTracker.load(get_node(glb.jester_stage_path) as Jester_Stage);
 	start_a_countdown();
 	pass;
-
-var allow_move = false;
 
 func _handle_decrease_fun_bar():
 	fun_bar_level -= fun_bar_modifiers.get("beat_passed_decrement", 0);
@@ -78,7 +78,6 @@ func start_a_countdown():
 
 func Start_Game():
 	game_is_active = true;
-	allow_move = true;
 
 	var player = get_node(glb.player_path) as Player;
 	player.move(movementTracker.get_current_world_position());
@@ -93,7 +92,11 @@ func Start_Game():
 
 
 func _physics_process(_delta):
-	if allow_move:
+	if not RhythmManager.can_move:
+		already_moved_on_beat = false;
+
+
+	if game_is_active && not already_moved_on_beat:
 		handle_input();
 
 
@@ -110,6 +113,7 @@ func handle_input() -> void:
 	if(pressed_move):
 		var new_move = Vector2i.ZERO
 		if RhythmManager.can_move:
+			already_moved_on_beat = true;
 			if pressed_right:
 				new_move = Vector2i(1, 0)
 
