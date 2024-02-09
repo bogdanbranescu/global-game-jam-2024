@@ -150,7 +150,7 @@ func _handle_pressed_on_beat():
 	get_node(glb.king_path).invoke_reaction(true);
 	
 	if(movementTracker.check_if_standing_on_event()):
-		fun_bar_level += 5.5;
+		fun_bar_level += 4.0;
 
 		var jester_stage = get_node(glb.jester_stage_path) as Jester_Stage;
 		jester_stage.remove_tile_event_from_cell(movementTracker.get_current_cell_position());

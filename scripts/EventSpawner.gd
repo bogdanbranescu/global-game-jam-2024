@@ -23,10 +23,8 @@ var distances = [
 
 
 func _ready():
-	spawn_event()
-	spawn_event()
-	spawn_event()
-	spawn_event()
+	for i in range(5):
+		spawn_event()
 
 
 func _on_spawn_event(event_type, grid_location, timestamp):
